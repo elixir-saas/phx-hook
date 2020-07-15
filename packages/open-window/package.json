@@ -1,6 +1,6 @@
 {
   "name": "@phx-hook/open-window",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Open a window on click event",
   "main": "src/index.js",
   "author": "Justin Tormey <justin@93software.com>",
