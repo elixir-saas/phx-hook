@@ -2,7 +2,11 @@
 
 A collection of useful hooks for Phoenix LiveView JavaScript interop.
 
-# Hooks
+## Hooks
 
 * [`@phx-hook/drag-drop-detector`](./packages/drag-drop-detector)
 * [`@phx-hook/open-window`](./packages/open-window)
+
+## Publishing
+
+Run `lerna publish` and follow prompts.
