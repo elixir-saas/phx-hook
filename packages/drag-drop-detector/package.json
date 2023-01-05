@@ -1,0 +1,8 @@
+{
+  "name": "@phx-hook/drag-drop-detector",
+  "version": "0.0.1",
+  "description": "Change element classes on drag and drop events",
+  "main": "src/index.js",
+  "author": "Justin Tormey <justin@93software.com>",
+  "license": "MIT"
+}
