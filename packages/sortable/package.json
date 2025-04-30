@@ -1,0 +1,28 @@
+{
+  "name": "@phx-hook/sortable",
+  "version": "0.1.0",
+  "description": "Use Sortable.js as a phx-hook",
+  "keywords": [
+    "Phoenix",
+    "Elixir",
+    "LiveView",
+    "Sortable"
+  ],
+  "author": "Justin Tormey <justin@93software.com>",
+  "homepage": "https://github.com/elixir-saas/phx-hook/tree/main/packages/sortable",
+  "license": "MIT",
+  "main": "src/index.js",
+  "directories": {
+    "src": "src"
+  },
+  "files": [
+    "src"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elixir-saas/phx-hook.git"
+  },
+  "bugs": {
+    "url": "https://github.com/elixir-saas/phx-hook/issues"
+  }
+}
