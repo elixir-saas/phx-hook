@@ -13,7 +13,7 @@ import SortableHook from "@phx-hook/sortable";
 const defaultSortableOpts = { ... };
 
 const hooks = {
-  Sortable: SortableHook(Sortable, defaultSortableOpts);
+  Sortable: SortableHook(Sortable, defaultSortableOpts),
 };
 
 let liveSocket = new LiveSocket("/live", Socket, { hooks, ... });
@@ -27,13 +27,12 @@ let liveSocket = new LiveSocket("/live", Socket, { hooks, ... });
   data-animation="150"
   data-delay="300"
   data-delay-on-touch-only
-  data-ghost-class="drag-ghost"
   data-force-fallback
 >
   <div
     :for={item <- @items}
     data-item-id={item.id}
-    class="drag-ghost:invisible"
+    class="sortable-ghost:invisible"
   >
     ...
   </div>
@@ -49,3 +48,32 @@ All Sortable.js options are supported.
 All Sortable.js options are supported as attributes, for example:
 
 `swapThreshold: 1` becomes `data-swap-threshold="1"`.
+
+## TailwindCSS
+
+You might find it helpful to add Tailwind variants for various drag states.
+
+Using Tailwind v4:
+
+```css
+/* In assets/css/app.css */
+/* These reflect the default class names used by Sortable.js */
+
+@custom-variant sortable-ghost (.sortable-ghost&, .sortable-ghost &);
+@custom-variant sortable-chosen (.sortable-chosen&, .sortable-chosen &);
+@custom-variant sortable-drag (.sortable-drag&, .sortable-drag &);
+```
+
+
+Using Tailwind v3:
+
+```js
+// In assets/tailwind.config.js
+// These reflect the default class names used by Sortable.js
+
+plugins: [
+  plugin(({addVariant}) => addVariant("sortable-ghost", [".sortable-ghost&", ".sortable-ghost &"])),
+  plugin(({addVariant}) => addVariant("sortable-chosen", [".sortable-chosen&", ".sortable-chosen &"])),
+  plugin(({addVariant}) => addVariant("sortable-drag", [".sortable-drag&", ".sortable-drag &"])),
+]
+```
