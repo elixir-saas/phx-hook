@@ -8,7 +8,7 @@ module.exports = function () {
       window.addEventListener("contextmenu", this.handleContextMenu);
     },
 
-    destroy() {
+    destroyed() {
       window.removeEventListener("click", this.handleClick);
       window.removeEventListener("contextmenu", this.handleContextMenu);
     },
@@ -26,7 +26,21 @@ module.exports = function () {
     },
 
     handleContextMenu(event) {
-      if (event.target.contains(this.el)) {
+      let show = false;
+      let containerID = this.el.dataset["containerId"];
+
+      if (containerID) {
+        // Custom container, check if event.target is within container.
+        let container = document.getElementById(containerID);
+        if (!container) throw `Missing RightClickMenu container element with ID "${containerID}"`;
+        show = container.contains(event.target)
+      } else {
+        // Infer container from event.target, check if has hook element as child.
+        let container = event.target;
+        show = new Array(...container.children).includes(this.el)
+      }
+
+      if (show) {
         event.preventDefault();
 
         Object.assign(this.el.style, {
