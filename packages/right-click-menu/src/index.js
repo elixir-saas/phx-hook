@@ -1,5 +1,7 @@
 module.exports = function () {
   return {
+    opened: false,
+
     mounted() {
       this.handleClick = this.handleClick.bind(this);
       this.handleContextMenu = this.handleContextMenu.bind(this);
@@ -14,7 +16,7 @@ module.exports = function () {
     },
 
     handleClick(event) {
-      if (!this.el.contains(event.target)) {
+      if (this.opened && !this.el.contains(event.target)) {
         let hideJS = this.el.getAttribute("phx-remove");
 
         if (hideJS) {
@@ -22,6 +24,8 @@ module.exports = function () {
         } else {
           this.el.style.display = "none";
         }
+
+        this.opened = false;
       }
     },
 
@@ -52,6 +56,8 @@ module.exports = function () {
       } else {
         this.el.style.display = "none";
       }
+
+      this.opened = show;
     },
   };
 }
