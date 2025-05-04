@@ -53,6 +53,12 @@ module.exports = function () {
           top: `${event.pageY}px`,
           left: `${event.pageX}px`,
         });
+
+        let onShowJS = this.el.dataset["onShow"];
+
+        if (onShowJS) {
+          liveSocket.execJS(this.el, onShowJS);
+        }
       } else {
         this.el.style.display = "none";
       }

@@ -22,6 +22,7 @@ let liveSocket = new LiveSocket("/live", Socket, { hooks, ... });
   phx-hook="RightClickMenu"
   phx-remove={JS.hide(transition: {"transition-opacity", "opacity-100", "opacity-0"})}
   data-container-id={"item_#{@item.id}"}
+  data-on-show={JS.focus()}
 >
   <.item_options_menu
     on_mark_read={
@@ -50,3 +51,4 @@ This hook does not have any options.
 
 * `phx-remove`: A JS command that will be executed when the user clicks away from the menu while it is open.
 * `data-container-id`: By default, the menu will show when immediate parent of the hook element is right-clicked. Set this attribute to instead open it when a specific container element or any of its children are the target of the event. Use when you are not able to render the hook element as a direct child, for example if it is a `<tr>` element.
+* `data-on-show`: A JS command that will be executed whenever the menu is shown. Useful for applying focus to a default element in the menu.
