@@ -2,7 +2,29 @@
   "name": "@phx-hook/open-window",
   "version": "0.1.0",
   "description": "Open a window on click event",
-  "main": "src/index.js",
+  "keywords": [
+    "Phoenix",
+    "Elixir",
+    "LiveView"
+  ],
   "author": "Justin Tormey <justin@93software.com>",
-  "license": "MIT"
+  "homepage": "https://github.com/elixir-saas/phx-hook/tree/main/packages/open-window",
+  "license": "MIT",
+  "main": "src/index.js",
+  "directories": {
+    "src": "src"
+  },
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "format": "prettier src --write"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elixir-saas/phx-hook.git"
+  },
+  "bugs": {
+    "url": "https://github.com/elixir-saas/phx-hook/issues"
+  }
 }

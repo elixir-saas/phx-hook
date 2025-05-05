@@ -2,7 +2,29 @@
   "name": "@phx-hook/drag-drop-detector",
   "version": "0.1.0",
   "description": "Change element classes on drag and drop events",
-  "main": "src/index.js",
+  "keywords": [
+    "Phoenix",
+    "Elixir",
+    "LiveView"
+  ],
   "author": "Justin Tormey <justin@93software.com>",
-  "license": "MIT"
+  "homepage": "https://github.com/elixir-saas/phx-hook/tree/main/packages/drag-drop-detector",
+  "license": "MIT",
+  "main": "src/index.js",
+  "directories": {
+    "src": "src"
+  },
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "format": "prettier src --write"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elixir-saas/phx-hook.git"
+  },
+  "bugs": {
+    "url": "https://github.com/elixir-saas/phx-hook/issues"
+  }
 }

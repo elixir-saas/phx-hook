@@ -19,7 +19,11 @@ module.exports = function (Sortable, opts = {}) {
         dragClass: data(this.el, "dragClass"),
         swapThreshold: data(this.el, "swapThreshold", "integer"),
         invertSwap: data(this.el, "invertSwap", "boolean"),
-        invertedSwapThreshold: data(this.el, "invertedSwapThreshold", "integer"),
+        invertedSwapThreshold: data(
+          this.el,
+          "invertedSwapThreshold",
+          "integer",
+        ),
         direction: data(this.el, "direction"),
         forceFallback: data(this.el, "forceFallback", "boolean"),
         fallbackClass: data(this.el, "fallbackClass"),
@@ -97,7 +101,7 @@ module.exports = function (Sortable, opts = {}) {
       });
     },
   };
-}
+};
 
 // Helpers
 

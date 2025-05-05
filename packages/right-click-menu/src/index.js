@@ -36,12 +36,16 @@ module.exports = function () {
       if (containerID) {
         // Custom container, check if event.target is within container.
         let container = document.getElementById(containerID);
-        if (!container) throw `Missing RightClickMenu container element with ID "${containerID}"`;
-        show = container.contains(event.target)
+
+        if (!container) {
+          throw `Missing RightClickMenu container element with ID "${containerID}"`;
+        }
+
+        show = container.contains(event.target);
       } else {
         // Infer container from event.target, check if has hook element as child.
         let container = event.target;
-        show = new Array(...container.children).includes(this.el)
+        show = new Array(...container.children).includes(this.el);
       }
 
       if (show) {
@@ -66,4 +70,4 @@ module.exports = function () {
       this.opened = show;
     },
   };
-}
+};
