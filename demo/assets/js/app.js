@@ -23,6 +23,7 @@ import "phoenix_html"
 import {Socket} from "phoenix"
 import {LiveSocket} from "phoenix_live_view"
 import topbar from "../vendor/topbar"
+import Sortable from "../vendor/Sortable"
 
 // Import & configure hooks
 import DragDropDetectorHook from "../../../packages/drag-drop-detector"
@@ -34,7 +35,7 @@ const hooks = {
   DragDropDetector: DragDropDetectorHook(),
   OpenWindow: OpenWindowHook(),
   RightClickMenu: RightClickMenuHook(),
-  Sortable: SortableHook(),
+  Sortable: SortableHook(Sortable),
 }
 
 const csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")

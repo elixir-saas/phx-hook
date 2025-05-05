@@ -96,6 +96,11 @@
 @custom-variant phx-submit-loading (.phx-submit-loading&, .phx-submit-loading &);
 @custom-variant phx-change-loading (.phx-change-loading&, .phx-change-loading &);
 
+/* Add variants for the default class names used by Sortable.js */
+@custom-variant sortable-ghost (.sortable-ghost&, .sortable-ghost &);
+@custom-variant sortable-chosen (.sortable-chosen&, .sortable-chosen &);
+@custom-variant sortable-drag (.sortable-drag&, .sortable-drag &);
+
 /* Make LiveView wrapper divs transparent for layout */
 [data-phx-session] { display: contents }
 

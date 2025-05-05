@@ -19,6 +19,7 @@ defmodule DemoWeb.Router do
 
     get "/", PageController, :home
 
+    live "/sortable", DemoLive.Sortable
     live "/right-click-menu", DemoLive.RightClickMenu
   end
 

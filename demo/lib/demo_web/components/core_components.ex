@@ -317,6 +317,10 @@ defmodule DemoWeb.CoreComponents do
     default: &Function.identity/1,
     doc: "the function for mapping each row before calling the :col and :action slots"
 
+  attr :sortable, :boolean, default: false
+  attr :sortable_item_id, :any, default: nil
+  attr :sortable_on_end, :string, default: nil
+
   slot :col, required: true do
     attr :label, :string
   end
@@ -340,8 +344,20 @@ defmodule DemoWeb.CoreComponents do
           </th>
         </tr>
       </thead>
-      <tbody id={@id} phx-update={is_struct(@rows, Phoenix.LiveView.LiveStream) && "stream"}>
-        <tr :for={row <- @rows} id={@row_id && @row_id.(row)}>
+      <tbody
+        id={@id}
+        phx-update={is_struct(@rows, Phoenix.LiveView.LiveStream) && "stream"}
+        phx-hook={if @sortable, do: "Sortable"}
+        data-on-end={@sortable_on_end}
+        data-delay="250"
+        data-delay-on-touch-only
+      >
+        <tr
+          :for={row <- @rows}
+          id={@row_id && @row_id.(row)}
+          class="bg-base-100 sortable-ghost:invisible"
+          data-item-id={@sortable_item_id && @sortable_item_id.(row)}
+        >
           <td
             :for={col <- @col}
             phx-click={@row_click && @row_click.(row)}
