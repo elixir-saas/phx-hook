@@ -24,8 +24,22 @@ import {Socket} from "phoenix"
 import {LiveSocket} from "phoenix_live_view"
 import topbar from "../vendor/topbar"
 
+// Import & configure hooks
+import DragDropDetectorHook from "../../../packages/drag-drop-detector"
+import OpenWindowHook from "../../../packages/open-window"
+import RightClickMenuHook from "../../../packages/right-click-menu"
+import SortableHook from "../../../packages/sortable"
+
+const hooks = {
+  DragDropDetector: DragDropDetectorHook(),
+  OpenWindow: OpenWindowHook(),
+  RightClickMenu: RightClickMenuHook(),
+  Sortable: SortableHook(),
+}
+
 const csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
 const liveSocket = new LiveSocket("/live", Socket, {
+  hooks,
   longPollFallbackMs: 2500,
   params: {_csrf_token: csrfToken}
 })
