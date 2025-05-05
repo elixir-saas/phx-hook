@@ -12,6 +12,7 @@ A collection of useful hooks for Phoenix LiveView JavaScript interop.
 
 * [`@phx-hook/drag-drop-detector`](./packages/drag-drop-detector) - Add classes for drag and drop events.
 * [`@phx-hook/open-window`](./packages/open-window) - Open new, configurable windows on click.
+* [`@phx-hook/prevent-unsaved-changes`](./packages/prevent-unsaved-changes) - Prompt users to prevent losing unsaved changes.
 * [`@phx-hook/right-click-menu`](./packages/right-click-menu) - Open custom context menus on right click.
 * [`@phx-hook/sortable`](./packages/sortable) - Easy drag-and-drop sorting with [Sortable.js](https://sortablejs.github.io/Sortable/).
 
@@ -53,6 +54,8 @@ Contributions back to `@phx-hook` are also welcome!
 ## Development
 
 Run `lerna run format` to run [Prettier](https://prettier.io/) across all packages.
+
+Run `lerna create [package]` and follow prompts to create a new package.
 
 ## Publishing
 
