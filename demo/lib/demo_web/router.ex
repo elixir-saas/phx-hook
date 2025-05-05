@@ -21,6 +21,7 @@ defmodule DemoWeb.Router do
 
     live "/drag-drop-detector", DemoLive.DragDropDetector
     live "/open-window", DemoLive.OpenWindow
+    live "/prevent-unsaved-changes", DemoLive.PreventUnsavedChanges
     live "/sortable", DemoLive.Sortable
     live "/right-click-menu", DemoLive.RightClickMenu
   end
