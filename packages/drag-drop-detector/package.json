@@ -1,6 +1,6 @@
 {
   "name": "@phx-hook/drag-drop-detector",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Change element classes on drag and drop events",
   "keywords": [
     "Phoenix",

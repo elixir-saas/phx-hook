@@ -1,6 +1,6 @@
 {
   "name": "@phx-hook/sortable",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Use Sortable.js as a phx-hook",
   "keywords": [
     "Phoenix",

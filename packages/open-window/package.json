@@ -1,6 +1,6 @@
 {
   "name": "@phx-hook/open-window",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Open a window on click event",
   "keywords": [
     "Phoenix",
