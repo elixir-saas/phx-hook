@@ -1,3 +1,9 @@
+<p align="center">
+  <img src="demo/priv/logo.png" height="150" />
+</p>
+
+---
+
 # phx-hook
 
 A collection of useful hooks for Phoenix LiveView JavaScript interop.
