@@ -1,4 +1,4 @@
-module.exports = function () {
+export default function () {
   return {
     opened: false,
 
@@ -70,4 +70,4 @@ module.exports = function () {
       this.opened = show;
     },
   };
-};
+}

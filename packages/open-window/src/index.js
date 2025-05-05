@@ -1,4 +1,4 @@
-module.exports = function ({ defaults } = { defaults: {} }) {
+export default function ({ defaults } = { defaults: {} }) {
   return {
     windowUrl() {
       return this.el.getAttribute("data-window-url");
@@ -67,7 +67,7 @@ module.exports = function ({ defaults } = { defaults: {} }) {
       });
     },
   };
-};
+}
 
 function objectToWindowOptions(options) {
   let windowOptions = [];

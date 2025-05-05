@@ -1,4 +1,4 @@
-module.exports = function (options = {}) {
+export default function (options = {}) {
   return {
     mounted() {
       const activeClass =
@@ -17,4 +17,4 @@ module.exports = function (options = {}) {
       });
     },
   };
-};
+}

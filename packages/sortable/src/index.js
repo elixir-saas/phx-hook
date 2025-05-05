@@ -1,4 +1,4 @@
-module.exports = function (Sortable, opts = {}) {
+export default function (Sortable, opts = {}) {
   return {
     mounted() {
       let config = processConfig(opts, {
@@ -101,7 +101,7 @@ module.exports = function (Sortable, opts = {}) {
       });
     },
   };
-};
+}
 
 // Helpers
 
