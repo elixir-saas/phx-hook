@@ -68,7 +68,6 @@ Using Tailwind v4:
 @custom-variant sortable-drag (.sortable-drag&, .sortable-drag &);
 ```
 
-
 Using Tailwind v3:
 
 ```js
