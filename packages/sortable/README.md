@@ -2,6 +2,8 @@
 
 Integrate [Sortable.js](https://sortablejs.github.io/Sortable/) with Phoenix LiveView.
 
+[See it in action (Demo).](https://phx-hook.elixir-saas.com/sortable)
+
 This package does not come with Sortable.js included, instead it is recommended that you download Sortable from their [releases](https://github.com/SortableJS/Sortable/releases) and add it directly to your `assets/vendor` directory.
 
 Use with [`:ecto_orderable`](https://github.com/elixir-saas/ecto_orderable) for syncing sorted items to your database.

@@ -2,6 +2,8 @@
 
 Open custom context menus on right click in your Phoenix LiveView app.
 
+[See it in action (Demo).](https://phx-hook.elixir-saas.com/right-click-menu)
+
 ## Usage
 
 ```js
