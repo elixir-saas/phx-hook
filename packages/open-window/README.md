@@ -5,18 +5,24 @@ Binds a click handler to an element that opens a new window.
 ## Usage
 
 ```js
-const hooks = {}
-hooks['open-window'] = require('@phx-hook/open-window')({ defaults: {} })
+import OpenWindowHook from "@phx-hook/open-window";
 
-let liveSocket = new LiveSocket("/live", Socket, { hooks, ... })
+const hooks = {
+  OpenWindow: OpenWindowHook({ defaults: {} }),
+};
+
+let liveSocket = new LiveSocket("/live", Socket, { hooks, ... });
 ```
 
 ```html
-<button phx-hook="open-window"
+<button
+  id="window_opener"
+  phx-hook="OpenWindow"
   data-event="opened_window"
   data-window-url="https://example.com"
   data-window-name="Example"
-  data-window-dimensions="1080:720:center">
+  data-window-dimensions="1080:720:center"
+>
   Open a new window
 </button>
 ```
