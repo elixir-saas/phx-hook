@@ -26,7 +26,7 @@ let liveSocket = new LiveSocket("/live", Socket, { hooks, ... });
 
 ## Attributes
 
-* `data-active-class`: Class to be added to the element when it is dragged over, overrides `activeClass`.
+* `data-drag-target`: Set to `"window"` to detect dragging anywhere in the window, instead of just over the hook element. Useful for creating a global drag & drop upload experience.
 
 ## TailwindCSS
 

@@ -1,20 +1,48 @@
 export default function (options = {}) {
+  const activeClass = options.activeClass || "drop-active";
+
   return {
+    dragCounter: 0,
+
     mounted() {
-      const activeClass =
-        this.el.dataset["activeClass"] || options.activeClass || "drop-active";
+      this.dropTarget =
+        this.el.dataset["dragTarget"] === "window" ? window : this.el;
 
-      this.el.addEventListener("dragover", () => {
+      this.handleDragEnter = this.handleDragEnter.bind(this);
+      this.handleDragLeave = this.handleDragLeave.bind(this);
+      this.handleDrop = this.handleDrop.bind(this);
+
+      this.dropTarget.addEventListener("dragenter", this.handleDragEnter);
+      this.dropTarget.addEventListener("dragleave", this.handleDragLeave);
+      this.dropTarget.addEventListener("drop", this.handleDrop);
+    },
+
+    destroyed() {
+      this.dropTarget.removeEventListener("dragenter", this.handleDragEnter);
+      this.dropTarget.removeEventListener("dragleave", this.handleDragLeave);
+      this.dropTarget.removeEventListener("drop", this.handleDrop);
+    },
+
+    handleDragEnter(event) {
+      this.dragCounter++;
+
+      if (Array.from(event.dataTransfer.types).includes("Files")) {
         this.el.classList.add(activeClass);
-      });
+      }
+    },
 
-      this.el.addEventListener("dragleave", () => {
-        this.el.classList.remove(activeClass);
-      });
+    handleDragLeave() {
+      this.dragCounter--;
 
-      this.el.addEventListener("drop", () => {
+      if (this.dragCounter === 0) {
         this.el.classList.remove(activeClass);
-      });
+      }
+    },
+
+    handleDrop() {
+      this.dragCounter = 0;
+
+      this.el.classList.remove(activeClass);
     },
   };
 }
