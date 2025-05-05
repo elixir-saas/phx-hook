@@ -102,7 +102,7 @@
 @custom-variant sortable-drag (.sortable-drag&, .sortable-drag &);
 
 /* Add variants for the class names used by @phx-hook/drag-drop-detector */
-@custom-variant drop-active (.drop-active&, .drop-active &);
+@custom-variant drag-active (.drag-active&, .drag-active &);
 
 /* Make LiveView wrapper divs transparent for layout */
 [data-phx-session] { display: contents }

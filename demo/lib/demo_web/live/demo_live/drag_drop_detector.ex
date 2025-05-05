@@ -4,8 +4,26 @@ defmodule DemoWeb.DemoLive.DragDropDetector do
   def render(assigns) do
     ~H"""
     <Layouts.app flash={@flash}>
-      <.form for={%{}} as={:f} phx-change="change">
-        <.file_upload id="demo_file_upload" upload={@uploads.file} />
+      <.form for={@form} phx-change="change">
+        <.input
+          type="checkbox"
+          class="toggle"
+          field={@form[:global]}
+          label="Enable global drag & drop"
+        />
+
+        <% # Inline demo %>
+        <%= if @form[:global].value == "false" do %>
+          <.inline_file_upload id="inline_file_upload" upload={@uploads.file} />
+        <% end %>
+
+        <% # Global demo %>
+        <%= if @form[:global].value == "true" do %>
+          <span class="text-sm">
+            Drag a file into your browser window to reveal the drop area.
+          </span>
+          <.global_file_upload id="global_file_upload" upload={@uploads.file} />
+        <% end %>
       </.form>
     </Layouts.app>
     """
@@ -13,15 +31,21 @@ defmodule DemoWeb.DemoLive.DragDropDetector do
 
   def mount(_params, _session, socket) do
     {:ok,
-     allow_upload(socket, :file,
+     socket
+     |> put_form(%{"global" => "false"})
+     |> allow_upload(:file,
        accept: ~w(.png .jpg .pdf),
        max_file_size: 10_000_000,
        max_entries: 10
      )}
   end
 
-  def handle_event("change", _params, socket) do
-    {:noreply, socket}
+  def handle_event("change", %{"form" => form_params}, socket) do
+    {:noreply, put_form(socket, form_params)}
+  end
+
+  def put_form(socket, params) do
+    assign(socket, :form, to_form(params, as: :form))
   end
 
   ## Components
@@ -32,22 +56,21 @@ defmodule DemoWeb.DemoLive.DragDropDetector do
   attr :id, :string, required: true
   attr :upload, Phoenix.LiveView.UploadConfig, required: true
 
-  def file_upload(assigns) do
+  def inline_file_upload(assigns) do
     ~H"""
-    <div class="gap-2 rounded-2xl bg-base-200 p-2">
+    <div class="space-y-2 rounded-2xl bg-base-200 p-2">
       <label
         id={@id}
         for={@upload.ref}
         phx-hook="DragDropDetector"
         phx-drop-target={@upload.ref}
-        data-active-class="drop-active"
         class={[
           "relative h-48",
           "flex flex-col items-center justify-center rounded-lg",
           "text-sm border-2 border-dashed",
           "border-primary/50 text-base-content",
           "hover:border-primary/70",
-          "drop-active:border-primary drop-active:text-primary"
+          "drag-active:border-primary drag-active:text-primary"
         ]}
       >
         <p class="text-center">
@@ -78,6 +101,50 @@ defmodule DemoWeb.DemoLive.DragDropDetector do
   end
 
   @doc """
+  Renders a custom file upload input with global drag-and-drop detection.
+  """
+  attr :id, :string, required: true
+  attr :upload, Phoenix.LiveView.UploadConfig, required: true
+
+  def global_file_upload(assigns) do
+    ~H"""
+    <label
+      id={@id}
+      for={@upload.ref}
+      phx-hook="DragDropDetector"
+      phx-drop-target={@upload.ref}
+      data-drag-target="window"
+      class={[
+        "hidden fixed inset-2 bg-base-100/90 z-50",
+        "drag-active:flex flex-col items-center justify-center rounded-lg",
+        "text-sm border-2 border-dashed",
+        "border-primary/50 text-base-content",
+        "hover:border-primary/70",
+        "drag-active:border-primary drag-active:text-primary"
+      ]}
+    >
+      <p class="text-center">
+        Drag & drop files here.
+      </p>
+      <.live_file_input upload={@upload} class="sr-only" />
+    </label>
+
+    <div :if={@upload.entries != []} class="absolute right-4 bottom-4">
+      <div class="space-y-2 rounded-xl bg-base-200 p-2">
+        <div class="px-2 flex gap-2 items-center text-sm text-content-base font-semibold">
+          <.icon name="hero-cloud-arrow-up-mini" class="size-4" /> Uploads
+        </div>
+        <.file_upload_entry
+          :for={entry <- @upload.entries}
+          entry={entry}
+          errors={upload_errors(@upload, entry)}
+        />
+      </div>
+    </div>
+    """
+  end
+
+  @doc """
   Renders a file upload entry.
   """
   attr :entry, Phoenix.LiveView.UploadEntry, required: true
@@ -85,7 +152,7 @@ defmodule DemoWeb.DemoLive.DragDropDetector do
 
   def file_upload_entry(assigns) do
     ~H"""
-    <div class="mt-2 flex flex-col gap-1 justify-between rounded-lg bg-base-300 border border-base-100 p-2">
+    <div class="flex flex-col gap-1 justify-between rounded-lg bg-base-300 border border-base-100 p-2">
       <div class="flex gap-2 items-center text-sm text-base-content">
         <.icon name="hero-document" class="size-4" />
         <div class="flex-1 truncate">
