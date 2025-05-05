@@ -322,6 +322,7 @@ defmodule DemoWeb.CoreComponents do
   end
 
   slot :action, doc: "the slot for showing user actions in the last table column"
+  slot :right_click, doc: "the slot for showing a menu for a row on right click"
 
   def table(assigns) do
     assigns =
@@ -330,7 +331,7 @@ defmodule DemoWeb.CoreComponents do
       end
 
     ~H"""
-    <table class="table table-zebra">
+    <table class="table">
       <thead>
         <tr>
           <th :for={col <- @col}>{col[:label]}</th>
@@ -358,6 +359,16 @@ defmodule DemoWeb.CoreComponents do
         </tr>
       </tbody>
     </table>
+
+    <.right_click_menu
+      :let={remove_menu}
+      :for={row <- @rows}
+      :if={@row_id && @right_click != []}
+      id={"#{@row_id.(row)}_menu"}
+      container_id={@row_id.(row)}
+    >
+      {render_slot(@right_click, {remove_menu, row})}
+    </.right_click_menu>
     """
   end
 
@@ -461,5 +472,30 @@ defmodule DemoWeb.CoreComponents do
   """
   def translate_errors(errors, field) when is_list(errors) do
     for {^field, {msg, opts}} <- errors, do: translate_error({msg, opts})
+  end
+
+  ## Hooks
+
+  @doc """
+  Renders a hidden element that reveals itself when its parent or target container is right-clicked.
+  """
+  attr :id, :string, required: true
+  attr :container_id, :string, default: nil
+  attr :on_show, JS, default: nil
+  slot :inner_block, required: true
+
+  def right_click_menu(assigns) do
+    ~H"""
+    <div
+      id={@id}
+      class="hidden"
+      phx-hook="RightClickMenu"
+      phx-remove={JS.hide(transition: {"transition-opacity", "opacity-100", "opacity-0"})}
+      data-container-id={@container_id}
+      data-on-show={@on_show}
+    >
+      {render_slot(@inner_block, JS.exec("phx-remove", to: "##{@id}"))}
+    </div>
+    """
   end
 end

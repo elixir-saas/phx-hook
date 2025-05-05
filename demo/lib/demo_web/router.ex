@@ -18,6 +18,8 @@ defmodule DemoWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+
+    live "/right-click-menu", DemoLive.RightClickMenu
   end
 
   # Other scopes may use custom stacks.
