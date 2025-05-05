@@ -10,7 +10,7 @@ kill_signal = 'SIGTERM'
 [build]
 
 [env]
-  PHX_HOST = 'phx-hook.fly.dev'
+  PHX_HOST = 'phx-hook.elixir-saas.com'
   PORT = '8080'
 
 [http_service]
