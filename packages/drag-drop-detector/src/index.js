@@ -1,8 +1,10 @@
 module.exports = function (options = {}) {
-  const activeClass = options.activeClass || 'drop-active'
-
   return {
     mounted () {
+      const activeClass = this.el.dataset["activeClass"]
+        || options.activeClass
+        || 'drop-active'
+
       this.el.addEventListener('dragover', () => {
         this.el.classList.add(activeClass)
       })

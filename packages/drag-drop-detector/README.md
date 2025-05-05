@@ -5,14 +5,17 @@ Change element classes on drag and drop events.
 ## Usage
 
 ```js
-const hooks = {}
-hooks['drag-drop-detector'] = require('@phx-hook/drag-drop-detector')({ activeClass: 'drop-active' })
+import DragDropDetectorHook from "@phx-hook/drag-drop-detector";
 
-let liveSocket = new LiveSocket("/live", Socket, { hooks, ... })
+const hooks = {
+  DragDropDetector: DragDropDetectorHook({ activeClass: 'drop-active' }),
+};
+
+let liveSocket = new LiveSocket("/live", Socket, { hooks, ... });
 ```
 
 ```html
-<div phx-hook="drag-drop-detector">
+<div id="drop_area" phx-hook="DragDropDetector">
   ...
 </div>
 ```
@@ -23,4 +26,4 @@ let liveSocket = new LiveSocket("/live", Socket, { hooks, ... })
 
 ## Attributes
 
-No attribute options.
+* `data-active-class`: Class to be added to the element when it is dragged over, overrides `activeClass`.
