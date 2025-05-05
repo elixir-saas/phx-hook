@@ -8,7 +8,7 @@ Change element classes on drag and drop events.
 import DragDropDetectorHook from "@phx-hook/drag-drop-detector";
 
 const hooks = {
-  DragDropDetector: DragDropDetectorHook({ activeClass: 'drop-active' }),
+  DragDropDetector: DragDropDetectorHook({ activeClass: "drag-active" }),
 };
 
 let liveSocket = new LiveSocket("/live", Socket, { hooks, ... });
@@ -22,7 +22,7 @@ let liveSocket = new LiveSocket("/live", Socket, { hooks, ... });
 
 ## Options
 
-* `activeClass`: Class to be added to the element when it is dragged over. Defaults to `"drop-active"`.
+* `activeClass`: Class to be added to the element when it is dragged over. Defaults to `"drag-active"`.
 
 ## Attributes
 
@@ -37,7 +37,7 @@ Using Tailwind v4:
 ```css
 /* In assets/css/app.css */
 
-@custom-variant drop-active (.drop-active&, .drop-active &);
+@custom-variant drag-active (.drag-active&, .drag-active &);
 ```
 
 Using Tailwind v3:
@@ -46,6 +46,6 @@ Using Tailwind v3:
 // In assets/tailwind.config.js
 
 plugins: [
-  plugin(({addVariant}) => addVariant("drop-active", [".drop-active&", ".drop-active &"])),
+  plugin(({addVariant}) => addVariant("drag-active", [".drag-active&", ".drag-active &"])),
 ]
 ```

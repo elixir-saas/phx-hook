@@ -1,5 +1,5 @@
 export default function (options = {}) {
-  const activeClass = options.activeClass || "drop-active";
+  const activeClass = options.activeClass || "drag-active";
 
   return {
     dragCounter: 0,
