@@ -19,6 +19,7 @@ defmodule DemoWeb.Router do
 
     get "/", PageController, :home
 
+    live "/drag-drop-detector", DemoLive.DragDropDetector
     live "/open-window", DemoLive.OpenWindow
     live "/sortable", DemoLive.Sortable
     live "/right-click-menu", DemoLive.RightClickMenu

@@ -101,6 +101,9 @@
 @custom-variant sortable-chosen (.sortable-chosen&, .sortable-chosen &);
 @custom-variant sortable-drag (.sortable-drag&, .sortable-drag &);
 
+/* Add variants for the class names used by @phx-hook/drag-drop-detector */
+@custom-variant drop-active (.drop-active&, .drop-active &);
+
 /* Make LiveView wrapper divs transparent for layout */
 [data-phx-session] { display: contents }
 
