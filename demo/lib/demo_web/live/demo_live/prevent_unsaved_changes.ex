@@ -32,7 +32,6 @@ defmodule DemoWeb.DemoLive.PreventUnsavedChanges do
           phx-hook="PreventUnsavedChanges"
           data-has-unsaved-changes={@user_form.source.changes != %{}}
           data-on-cancel={JS.patch(~p"/prevent-unsaved-changes")}
-          data-confirm-message="u sure?"
         >
           <.input field={@user_form[:username]} label="Username" />
           <.input field={@user_form[:first_name]} label="First name" />

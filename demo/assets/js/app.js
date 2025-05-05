@@ -28,7 +28,7 @@ import Sortable from "../vendor/Sortable"
 // Import & configure hooks
 import DragDropDetectorHook from "@phx-hook/drag-drop-detector"
 import OpenWindowHook from "@phx-hook/open-window"
-import PreventUnsavedChangesHook from "../../../packages/prevent-unsaved-changes"
+import PreventUnsavedChangesHook from "@phx-hook/prevent-unsaved-changes"
 import RightClickMenuHook from "@phx-hook/right-click-menu"
 import SortableHook from "@phx-hook/sortable"
 
