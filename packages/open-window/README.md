@@ -2,6 +2,8 @@
 
 Binds a click handler to an element that opens a new window.
 
+[See it in action (Demo).](https://phx-hook.elixir-saas.com/open-window)
+
 ## Usage
 
 ```js

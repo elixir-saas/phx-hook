@@ -2,6 +2,8 @@
 
 Change element classes on drag and drop events.
 
+[See it in action (Demo).](https://phx-hook.elixir-saas.com/drag-drop-detector)
+
 ## Usage
 
 ```js
