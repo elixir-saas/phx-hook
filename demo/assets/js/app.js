@@ -26,10 +26,10 @@ import topbar from "../vendor/topbar"
 import Sortable from "../vendor/Sortable"
 
 // Import & configure hooks
-import DragDropDetectorHook from "../../../packages/drag-drop-detector"
-import OpenWindowHook from "../../../packages/open-window"
-import RightClickMenuHook from "../../../packages/right-click-menu"
-import SortableHook from "../../../packages/sortable"
+import DragDropDetectorHook from "@phx-hook/drag-drop-detector"
+import OpenWindowHook from "@phx-hook/open-window"
+import RightClickMenuHook from "@phx-hook/right-click-menu"
+import SortableHook from "@phx-hook/sortable"
 
 const hooks = {
   DragDropDetector: DragDropDetectorHook(),
