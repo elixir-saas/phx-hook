@@ -11,7 +11,7 @@ A collection of useful hooks for Phoenix LiveView JavaScript interop.
 
 ## Installation
 
-To install a phx-hook from the root of your Phoenix project, run:
+To install a `phx-hook` from the root of your Phoenix project, run:
 
 ```sh
 npm i --save @phx-hook/package --prefix assets
