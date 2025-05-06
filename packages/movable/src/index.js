@@ -15,15 +15,15 @@ export default function (options = {}) {
     mounted() {
       this.style = { position: "absolute" };
 
-      let moveHandleEl = this.el.dataset["moveHandle"]
-        ? this.el.querySelector(this.el.dataset["moveHandle"])
-        : this.el;
-
       this.handleMouseDown = this.handleMouseDown.bind(this);
       this.handleMouseUp = this.handleMouseUp.bind(this);
       this.handleMouseMove = this.handleMouseMove.bind(this);
       this.handleCornerMouseUp = this.handleCornerMouseUp.bind(this);
       this.handleCornerMouseMove = this.handleCornerMouseMove.bind(this);
+
+      let moveHandleEl = this.el.dataset["moveHandle"]
+        ? this.el.querySelector(this.el.dataset["moveHandle"])
+        : this.el;
 
       moveHandleEl.addEventListener("mousedown", this.handleMouseDown);
 
@@ -43,7 +43,6 @@ export default function (options = {}) {
     destroyed() {
       document.removeEventListener("mouseup", this.handleMouseUp);
       document.removeEventListener("mousemove", this.handleMouseMove);
-
       document.removeEventListener("mouseup", this.handleCornerMouseUp);
       document.removeEventListener("mousemove", this.handleCornerMouseMove);
     },
@@ -196,7 +195,6 @@ export default function (options = {}) {
       }
 
       // Apply aspect ratio
-
       let resizeAspect = this.el.dataset["resizeAspect"];
 
       if (resizeAspect) {
@@ -205,9 +203,12 @@ export default function (options = {}) {
         aspectW = parseInt(aspectW);
         aspectH = parseInt(aspectH);
 
-        if (isNaN(aspectW)) throw new Error(`Invalid aspect width: ${aspectW}`);
-        if (isNaN(aspectH))
+        if (isNaN(aspectW)) {
+          throw new Error(`Invalid aspect width: ${aspectW}`);
+        }
+        if (isNaN(aspectH)) {
           throw new Error(`Invalid aspect height: ${aspectH}`);
+        }
 
         let ratio = aspectW / aspectH;
 
@@ -229,7 +230,6 @@ export default function (options = {}) {
       }
 
       // Apply min width and height constraints
-
       let minWidth = parseInt(this.el.dataset["resizeMinWidth"]);
       let minHeight = parseInt(this.el.dataset["resizeMinHeight"]);
 
@@ -244,7 +244,6 @@ export default function (options = {}) {
       }
 
       // Apply max width and height constraints
-
       let maxWidth = parseInt(this.el.dataset["resizeMaxWidth"]);
       let maxHeight = parseInt(this.el.dataset["resizeMaxHeight"]);
 
@@ -259,7 +258,6 @@ export default function (options = {}) {
       }
 
       // Apply calculated style updates
-
       let updates = {
         width: `${w}px`,
         height: `${h}px`,
