@@ -2,6 +2,7 @@
   "dependencies": {
     "@phx-hook/copy-to-clipboard": "^0.1.0",
     "@phx-hook/drag-drop-detector": "^0.2.0",
+    "@phx-hook/movable": "^0.1.0",
     "@phx-hook/open-window": "^0.1.1",
     "@phx-hook/prevent-unsaved-changes": "^0.1.0",
     "@phx-hook/right-click-menu": "^0.1.1",

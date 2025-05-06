@@ -104,6 +104,10 @@
 /* Add variants for the class names used by @phx-hook/drag-drop-detector */
 @custom-variant drag-active (.drag-active&, .drag-active &);
 
+/* Add variants for the class names used by @phx-hook/movable */
+@custom-variant moving (.moving&, .moving &);
+@custom-variant resizing (.resizing&, .resizing &);
+
 /* Make LiveView wrapper divs transparent for layout */
 [data-phx-session] { display: contents }
 

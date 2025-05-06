@@ -28,6 +28,7 @@ import Sortable from "../vendor/Sortable"
 // Import & configure hooks
 import CopyToClipboardHook from "@phx-hook/copy-to-clipboard"
 import DragDropDetectorHook from "@phx-hook/drag-drop-detector"
+import MovableHook from "@phx-hook/movable"
 import OpenWindowHook from "@phx-hook/open-window"
 import PreventUnsavedChangesHook from "@phx-hook/prevent-unsaved-changes"
 import RightClickMenuHook from "@phx-hook/right-click-menu"
@@ -36,6 +37,7 @@ import SortableHook from "@phx-hook/sortable"
 const hooks = {
   CopyToClipboard: CopyToClipboardHook(),
   DragDropDetector: DragDropDetectorHook(),
+  Movable: MovableHook(),
   OpenWindow: OpenWindowHook(),
   PreventUnsavedChanges: PreventUnsavedChangesHook(),
   RightClickMenu: RightClickMenuHook(),

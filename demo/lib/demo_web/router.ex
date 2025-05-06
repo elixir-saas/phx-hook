@@ -21,6 +21,7 @@ defmodule DemoWeb.Router do
 
     live "/copy-to-clipboard", DemoLive.CopyToClipboard
     live "/drag-drop-detector", DemoLive.DragDropDetector
+    live "/movable", DemoLive.Movable
     live "/open-window", DemoLive.OpenWindow
     live "/prevent-unsaved-changes", DemoLive.PreventUnsavedChanges
     live "/sortable", DemoLive.Sortable
