@@ -77,4 +77,4 @@ For example, if you add a `"group"` TailwindCSS class to the button element, you
 
 * `data-copy-contents`: Use in place of `data-copy-value` to copy the contents of a DOM element. Leave blank to copy the contents of the hook element, or set to a query selector to copy the contents of a child of the hook element. Works with both `"plain"` and `"html"` as the copy format.
 * `data-copy-format`: The format to use for the copy, may be either `"plain"` or `"html"`. Defaults to `"plain"`.
-* `data-copy-value`: A value to copy. May be either plain text or an HTML string, for when the copy format is set to `"html"`. This attribute takes preference over `data-copy-contents`.
+* `data-copy-value`: A value to copy. May be either plain text or an HTML string, for when the copy format is set to `"html"`. This attribute takes precedence over `data-copy-contents`.

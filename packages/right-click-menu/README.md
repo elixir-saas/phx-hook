@@ -16,7 +16,7 @@ const hooks = {
 let liveSocket = new LiveSocket("/live", Socket, { hooks, ... });
 ```
 
-```html
+```heex
 <div
   :for={item <- @items}
   id={"menu_#{item.id}"}

@@ -16,7 +16,7 @@ const hooks = {
 let liveSocket = new LiveSocket("/live", Socket, { hooks, ... });
 ```
 
-```html
+```heex
 <div id="drop_area" phx-hook="DragDropDetector">
   ...
 </div>

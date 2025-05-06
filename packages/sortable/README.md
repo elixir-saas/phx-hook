@@ -23,7 +23,7 @@ const hooks = {
 let liveSocket = new LiveSocket("/live", Socket, { hooks, ... });
 ```
 
-```html
+```heex
 <div
   id="sortable_list"
   phx-hook="Sortable"

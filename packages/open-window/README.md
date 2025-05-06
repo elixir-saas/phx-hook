@@ -16,7 +16,7 @@ const hooks = {
 let liveSocket = new LiveSocket("/live", Socket, { hooks, ... });
 ```
 
-```html
+```heex
 <button
   id="window_opener"
   phx-hook="OpenWindow"
