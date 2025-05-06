@@ -1,0 +1,31 @@
+{
+  "name": "@phx-hook/copy-to-clipboard",
+  "version": "0.1.0",
+  "description": "Copy values to the clipboard",
+  "keywords": [
+    "Phoenix",
+    "Elixir",
+    "LiveView",
+    "Clipboard"
+  ],
+  "author": "Justin Tormey <justin@93software.com>",
+  "homepage": "https://github.com/elixir-saas/phx-hook/tree/main/packages/copy-to-clipboard",
+  "license": "MIT",
+  "main": "src/index.js",
+  "directories": {
+    "src": "src"
+  },
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "format": "prettier src --write"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elixir-saas/phx-hook.git"
+  },
+  "bugs": {
+    "url": "https://github.com/elixir-saas/phx-hook/issues"
+  }
+}

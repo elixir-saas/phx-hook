@@ -10,6 +10,7 @@ A collection of useful hooks for Phoenix LiveView JavaScript interop.
 
 ## Hooks
 
+* [`@phx-hook/copy-to-clipboard`](./packages/copy-to-clipboard) - Copy values to the clipboard.
 * [`@phx-hook/drag-drop-detector`](./packages/drag-drop-detector) - Add classes for drag and drop events.
 * [`@phx-hook/open-window`](./packages/open-window) - Open new, configurable windows on click.
 * [`@phx-hook/prevent-unsaved-changes`](./packages/prevent-unsaved-changes) - Prompt users to prevent losing unsaved changes.
