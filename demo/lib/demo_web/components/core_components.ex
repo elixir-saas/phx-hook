@@ -103,7 +103,7 @@ defmodule DemoWeb.CoreComponents do
       """
     else
       ~H"""
-      <button class={["group btn", @class]} {@rest}>
+      <button class={["btn", @class]} {@rest}>
         {render_slot(@inner_block)}
       </button>
       """

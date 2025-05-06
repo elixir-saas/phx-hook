@@ -4,27 +4,23 @@ defmodule DemoWeb.DemoLive.CopyToClipboard do
   def render(assigns) do
     ~H"""
     <Layouts.app flash={@flash}>
-      <div
+      <.copy_button
         id="copy_1"
         phx-hook="CopyToClipboard"
         data-copy-format="plain"
         data-copy-value="This text was copied!"
       >
-        <.copy_button>
-          Copy plain value
-        </.copy_button>
-      </div>
+        Copy plain value
+      </.copy_button>
 
-      <div
+      <.copy_button
         id="copy_2"
         phx-hook="CopyToClipboard"
         data-copy-format="html"
         data-copy-value={@html_value}
       >
-        <.copy_button>
-          Copy HTML value
-        </.copy_button>
-      </div>
+        Copy HTML value
+      </.copy_button>
 
       <div class="space-y-2 text-sm">
         <.copy_button dispatch_to="#copy_3">
@@ -105,13 +101,14 @@ defmodule DemoWeb.DemoLive.CopyToClipboard do
   ## Components
 
   attr :dispatch_to, :string, default: nil
+  attr :rest, :global
   slot :inner_block, required: true
 
   def copy_button(assigns) do
     ~H"""
-    <.button variant="primary" phx-click={JS.dispatch("phx:copy", to: @dispatch_to)}>
-      <span class="group-data-copied:hidden">{render_slot(@inner_block)}</span>
-      <span class="hidden group-data-copied:inline">Copied!</span>
+    <.button {@rest} variant="primary" phx-click={JS.dispatch("phx:copy", to: @dispatch_to)}>
+      <span class="on-copy-hide">{render_slot(@inner_block)}</span>
+      <span class="on-copy-show">Copied!</span>
     </.button>
     """
   end

@@ -108,3 +108,8 @@
 [data-phx-session] { display: contents }
 
 /* This file is for your main application CSS */
+
+/* Utility classes for displaying elements based on data-copied attribute */
+[data-copied] > .on-copy-hide { display: none; }
+[data-copied] > .on-copy-show { display: inline; }
+:not([data-copied]) > .on-copy-show { display: none; }

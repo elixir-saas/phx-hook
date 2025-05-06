@@ -19,17 +19,17 @@ let liveSocket = new LiveSocket("/live", Socket, { hooks, ... });
 Specify the value you want copied as a data attribute:
 
 ```heex
-<div
+<.button
   id="copy_plain"
+  variant="primary"
+  phx-click={JS.dispatch("phx:copy")}
   phx-hook="CopyToClipboard"
   data-copy-format="plain"
   data-copy-value="This text was copied!"
 >
-  <.button variant="primary" phx-click={JS.dispatch("phx:copy")}>
-    <span class="group-data-copied:hidden">Copy</span>
-    <span class="hidden group-data-copied:inline">Copied!</span>
-  </.button>
-</div>
+  <span class="on-copy-hide">Copy</span>
+  <span class="on-copy-show">Copied!</span>
+</.button>
 ```
 
 Or, copy plain text and HTML directly from the DOM:
@@ -42,8 +42,8 @@ Or, copy plain text and HTML directly from the DOM:
   data-copy-contents="[data-copy-container]"
 >
   <.button variant="primary" phx-click={JS.dispatch("phx:copy")}>
-    <span class="group-data-copied:hidden">Copy</span>
-    <span class="hidden group-data-copied:inline">Copied!</span>
+    <span class="on-copy-hide">Copy</span>
+    <span class="on-copy-show">Copied!</span>
   </.button>
 
   <div data-copy-container>
@@ -56,9 +56,21 @@ Or, copy plain text and HTML directly from the DOM:
 </div>
 ```
 
-A copy is triggered by a `"phx:copy"` event, by default. When dispatched by a `<button>` element, it will propagate up through the DOM until it is caught and handled by the hook element. For this reason, your button should either be inside the hook element, or dispatch to it via `JS.dispatch/3`'s `:to` opt.
+A copy is triggered by a `"phx:copy"` event, by default. When dispatched by a `<button>` element, it will propagate up through the DOM until it is caught and handled by the hook element. For this reason, your button should either be the hook element, be inside the hook element, or dispatch to the hook element via `JS.dispatch/3`'s `:to` opt.
 
-After a successful write to the clipboard, a `data-copied="copied"` attribute will be added to the dispatching element (if available, otherwise it will be added to the hook element itself). This can be used to modify the appearance of your copy button.
+## Options
+
+* `copyEvent`: The event to listen for when a copy action is made. Defaults to `"phx:copy"`.
+
+## Attributes
+
+* `data-copy-contents`: Use in place of `data-copy-value` to copy the contents of a DOM element. Leave blank to copy the contents of the hook element, or set to a query selector to copy the contents of a child of the hook element. Works with both `"plain"` and `"html"` as the copy format.
+* `data-copy-format`: The optional format to use for the copy, may be either `"plain"` or `"html"`. Defaults to `"plain"`.
+* `data-copy-value`: A value to copy. May be either plain text or an HTML string, for when the copy format is set to `"html"`. This attribute takes precedence over `data-copy-contents`.
+
+## TailwindCSS
+
+After a successful write to the clipboard, a `data-copied="copied"` attribute will be added to the dispatching element (if available, otherwise it will be added to the hook element itself). This can be used to modify the appearance of your copy button after a copy action takes place.
 
 For example, if you add a `"group"` TailwindCSS class to the button element, you may show and hide contents of the button conditionally with group variant classes:
 
@@ -69,12 +81,13 @@ For example, if you add a `"group"` TailwindCSS class to the button element, you
 </button>
 ```
 
-## Options
+If the `group-data-copied:` variant is too cumbersome, consider creating custom utility classes instead:
 
-* `copyEvent`: The event to listen for when a copy action is made. Defaults to `"phx:copy"`.
+```css
+/* In assets/css/app.css */
 
-## Attributes
-
-* `data-copy-contents`: Use in place of `data-copy-value` to copy the contents of a DOM element. Leave blank to copy the contents of the hook element, or set to a query selector to copy the contents of a child of the hook element. Works with both `"plain"` and `"html"` as the copy format.
-* `data-copy-format`: The format to use for the copy, may be either `"plain"` or `"html"`. Defaults to `"plain"`.
-* `data-copy-value`: A value to copy. May be either plain text or an HTML string, for when the copy format is set to `"html"`. This attribute takes precedence over `data-copy-contents`.
+/* Utility classes for displaying elements based on data-copied attribute */
+[data-copied] > .on-copy-hide { display: none; }
+[data-copied] > .on-copy-show { display: inline; }
+:not([data-copied]) > .on-copy-show { display: none; }
+```
