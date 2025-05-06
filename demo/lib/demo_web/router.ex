@@ -19,6 +19,7 @@ defmodule DemoWeb.Router do
 
     get "/", PageController, :home
 
+    live "/copy-to-clipboard", DemoLive.CopyToClipboard
     live "/drag-drop-detector", DemoLive.DragDropDetector
     live "/open-window", DemoLive.OpenWindow
     live "/prevent-unsaved-changes", DemoLive.PreventUnsavedChanges
