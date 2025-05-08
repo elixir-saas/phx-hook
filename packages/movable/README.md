@@ -38,6 +38,42 @@ let liveSocket = new LiveSocket("/live", Socket, { hooks, ... });
 </div>
 ```
 
+The event pushed by `data-move-event` and `data-resize-event` includes the following params:
+
+```elixir
+%{
+  "top" => integer(),   # The current `top` style property
+  "left" => integer(),  # The current `left` style property
+  "width" => integer(), # The current `width` style property
+  "height" => integer() # The current `height` style property
+}
+```
+
+You may store these values so that the position of the element is retained later on, for example by rendering the element with a `style` created from the position params:
+
+```heex
+<div
+  id="movable"
+  style={if @position, do: style_for_position(@position)}
+  phx-hook="Movable"
+  ...
+>
+  <% # Contents %>
+</div>
+```
+
+```elixir
+def style_for_position(position) do
+  """
+  position: absolute;
+  top: #{position["top"]}px;
+  left: #{position["left"]}px;
+  width: #{position["width"]}px;
+  height: #{position["height"]}px;
+  """
+end
+```
+
 ## Options
 
 * `activeClass`: Class to be added when the hook element is moving. Defaults to `"moving"`.
