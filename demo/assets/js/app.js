@@ -31,6 +31,7 @@ import DragDropDetectorHook from "@phx-hook/drag-drop-detector"
 import MovableHook from "@phx-hook/movable"
 import OpenWindowHook from "@phx-hook/open-window"
 import PreventUnsavedChangesHook from "@phx-hook/prevent-unsaved-changes"
+import ResizableHook from "@phx-hook/resizable"
 import RightClickMenuHook from "@phx-hook/right-click-menu"
 import SortableHook from "@phx-hook/sortable"
 
@@ -40,6 +41,7 @@ const hooks = {
   Movable: MovableHook(),
   OpenWindow: OpenWindowHook(),
   PreventUnsavedChanges: PreventUnsavedChangesHook(),
+  Resizable: ResizableHook(),
   RightClickMenu: RightClickMenuHook(),
   Sortable: SortableHook(Sortable),
 }
@@ -99,4 +101,3 @@ if (process.env.NODE_ENV === "development") {
     window.liveReloader = reloader
   })
 }
-

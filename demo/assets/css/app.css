@@ -107,6 +107,7 @@
 /* Add variants for the class names used by @phx-hook/movable */
 @custom-variant moving (.moving&, .moving &);
 @custom-variant resizing (.resizing&, .resizing &);
+@custom-variant will-snap (.will-snap&, .will-snap &);
 
 /* Make LiveView wrapper divs transparent for layout */
 [data-phx-session] { display: contents }

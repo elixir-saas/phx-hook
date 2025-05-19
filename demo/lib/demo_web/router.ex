@@ -25,6 +25,7 @@ defmodule DemoWeb.Router do
     live "/open-window", DemoLive.OpenWindow
     live "/prevent-unsaved-changes", DemoLive.PreventUnsavedChanges
     live "/sortable", DemoLive.Sortable
+    live "/resizable", DemoLive.Resizable
     live "/right-click-menu", DemoLive.RightClickMenu
   end
 
