@@ -1,6 +1,6 @@
 export default function (options = {}) {
   let activeClass = options.activeClass || "moving";
-  let resizeClass = options.activeClass || "resizing";
+  let resizeClass = options.resizeClass || "resizing";
   let resizeSize = options.resizeCornerSize || "8px";
   let resizeOffset = options.resizeCornerOffset || "-4px";
 
@@ -247,12 +247,12 @@ export default function (options = {}) {
       let maxWidth = parseInt(this.el.dataset["resizeMaxWidth"]);
       let maxHeight = parseInt(this.el.dataset["resizeMaxHeight"]);
 
-      if (!isNaN(maxWidth) && w < maxWidth) {
+      if (!isNaN(maxWidth) && w > maxWidth) {
         w = maxWidth;
         left = undefined;
       }
 
-      if (!isNaN(maxHeight) && h < maxHeight) {
+      if (!isNaN(maxHeight) && h > maxHeight) {
         h = maxHeight;
         top = undefined;
       }
