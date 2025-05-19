@@ -91,3 +91,34 @@ If the `group-data-copied:` variant is too cumbersome, consider creating custom 
 [data-copied] > .on-copy-show { display: inline; }
 :not([data-copied]) > .on-copy-show { display: none; }
 ```
+
+## HEEx Component
+
+A ready-to-use component that wraps this hook, just copy into your project:
+
+```ex
+@doc """
+A button that copies to the users clipboard.
+"""
+attr :id, :string, required: true
+attr :copy_value, :string, required: true, doc: "Value to copy to the clipboard"
+attr :rest, :global, include: ~w(class variant)
+
+slot :inner_block, required: true
+
+def copy_button(assigns) do
+  ~H"""
+  <.button
+    id={@id}
+    phx-hook="CopyToClipboard"
+    data-copy-format="plain"
+    data-copy-value={@copy_value}
+    phx-click={JS.dispatch("phx:copy")}
+    {@rest}
+  >
+    <span class="on-copy-hide">{render_slot(@inner_block)}</span>
+    <span class="on-copy-show">Copied!</span>
+  </.button>
+  """
+end
+```

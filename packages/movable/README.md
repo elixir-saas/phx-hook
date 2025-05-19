@@ -120,3 +120,59 @@ plugins: [
   plugin(({addVariant}) => addVariant("resizing", [".resizing&", ".resizing &"])),
 ]
 ```
+
+## HEEx Component
+
+A ready-to-use component that wraps this hook, just copy into your project:
+
+```ex
+@doc """
+A freely movable and resizable component.
+"""
+attr :id, :string, required: true
+attr :class, :string, default: nil
+attr :move_event, :string, default: nil, doc: "Event to send after moving"
+attr :resizable, :boolean, default: false, doc: "Set to true to make resizable"
+attr :resize_aspect, :string, default: nil, doc: "Aspect ratio to maintain while resizing"
+attr :resize_aspect_offset, :string, default: nil, doc: "Vertical offset to apply to aspect ratio"
+attr :resize_event, :string, default: nil, doc: "Event to send after resizing"
+attr :resize_max_height, :integer, default: nil, doc: "Max height to resize to"
+attr :resize_max_width, :integer, default: nil, doc: "Max width to resize to"
+attr :resize_min_height, :integer, default: nil, doc: "Min height to resize to"
+attr :resize_min_width, :integer, default: nil, doc: "Min width to resize to"
+attr :rest, :global, include: ~w(style)
+
+slot :inner_block, required: true
+slot :move_handle
+
+def movable(assigns) do
+  ~H"""
+  <div
+    id={@id}
+    class={[
+      @class,
+      "bg-base-200 rounded-lg overflow-hidden",
+      "moving:ring-2 moving:ring-base-300 moving:shadow-lg",
+      "resizing:ring-2 resizing:ring-primary/50"
+    ]}
+    phx-hook="Movable"
+    data-move-event={@move_event}
+    data-move-handle={if @move_handle != [], do: "[data-handle]"}
+    data-resizable={@resizable}
+    data-resize-aspect={@resize_aspect}
+    data-resize-aspect-offset={@resize_aspect_offset}
+    data-resize-event={@resize_event}
+    data-resize-max-height={@resize_max_height}
+    data-resize-max-width={@resize_max_width}
+    data-resize-min-height={@resize_min_height}
+    data-resize-min-width={@resize_min_width}
+    {@rest}
+  >
+    <div :if={@move_handle != []} data-handle>
+      {render_slot(@move_handle)}
+    </div>
+    {render_slot(@inner_block)}
+  </div>
+  """
+end
+```

@@ -39,3 +39,35 @@ let liveSocket = new LiveSocket("/live", Socket, { hooks, ... });
 * `data-window-name`: Name to give to the new window (second argument of [window.open](https://developer.mozilla.org/en-US/docs/Web/API/Window/open))
 * `data-window-dimensions`: Options helper for applying window dimensions, can be a string in one of the following formats: `center`, `w:h`, `w:h:center`, `w:h:x:y`
 * `data-event`: Name of event to send to the LiveView when the hook is triggered
+
+## HEEx Component
+
+A ready-to-use component that wraps this hook, just copy into your project:
+
+```ex
+@doc """
+A button that opens a new window.
+"""
+attr :id, :string, required: true
+attr :window_url, :string, required: true, doc: "URL of the window to open"
+attr :window_name, :string, default: nil, doc: "Name of the new window"
+attr :window_dimensions, :string, default: nil, doc: "Dimensions of the new window, i.e. 1080:720"
+attr :rest, :global, include: ~w(class variant)
+
+slot :inner_block, required: true
+
+def open_window_button(assigns) do
+  ~H"""
+  <.button
+    id={@id}
+    phx-hook="OpenWindow"
+    data-window-url={@window_url}
+    data-window-name={@window_name}
+    data-window-dimensions={@window_dimensions}
+    {@rest}
+  >
+    {render_slot(@inner_block)}
+  </.button>
+  """
+end
+```

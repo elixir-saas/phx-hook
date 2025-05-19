@@ -115,3 +115,49 @@ plugins: [
   plugin(({addVariant}) => addVariant("will-snap", [".will-snap&", ".will-snap &"])),
 ]
 ```
+
+## HEEx Component
+
+A ready-to-use component that wraps this hook, just copy into your project:
+
+```ex
+@doc """
+A component that can be resized on one side.
+"""
+attr :id, :string, required: true
+attr :class, :string, default: nil
+attr :size, :integer, required: true, doc: "Initial size measured in px"
+attr :on_snap, JS, default: nil, doc: "JS command that runs when a snap is triggered"
+attr :resize_event, :string, default: nil, doc: "Event to send after resizing"
+attr :resize_from, :atom, values: ~w(right left bottom top)a, default: :right, doc: "Position of resize handle"
+attr :resize_max, :integer, default: nil, doc: "Max size to resize to"
+attr :resize_min, :integer, default: nil, doc: "Min size to resize to"
+attr :rest, :global
+
+slot :inner_block, required: true
+slot :resizable
+
+def resizable(assigns) do
+  ~H"""
+  <div
+    id={@id}
+    style={"--resize-size: #{@size}px;"}
+    class={if @resizable == [], do: [@class, "w-[var(--resize-size)]"], else: @class}
+    phx-hook="Resizable"
+    data-on-snap={@on_snap}
+    data-resize-event={@resize_event}
+    data-resize-from={@resize_from}
+    data-resize-max={@resize_max}
+    data-resize-min={@resize_min}
+    data-resize-target={if @resizable != [], do: "[data-resizable]"}
+    data-resize-var="--resize-size"
+    {@rest}
+  >
+    <div :if={@resizable != []} class="w-[var(--resize-size)]" data-resizable>
+      {render_slot(@resizable)}
+    </div>
+    {render_slot(@inner_block)}
+  </div>
+  """
+end
+```

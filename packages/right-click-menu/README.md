@@ -54,3 +54,33 @@ This hook does not have any options.
 * `phx-remove`: A JS command that will be executed when the user clicks away from the menu while it is open.
 * `data-container-id`: By default, the menu will show when immediate parent of the hook element is right-clicked. Set this attribute to instead open it when a specific container element or any of its children are the target of the event. Use when you are not able to render the hook element as a direct child, for example if it is a `<tr>` element.
 * `data-on-show`: A JS command that will be executed whenever the menu is shown. Useful for applying focus to a default element in the menu.
+
+## HEEx Component
+
+A ready-to-use component that wraps this hook, just copy into your project:
+
+```ex
+@doc """
+A component that reveals on right click.
+"""
+attr :id, :string, required: true
+attr :container_id, :string, default: nil, doc: "Container to watch for right click events"
+attr :on_show, JS, default: nil, doc: "JS command that runs when the menu appears"
+attr :rest, :global, include: ~w(class)
+
+slot :inner_block, required: true
+
+def right_click_menu(assigns) do
+  ~H"""
+  <div
+    id={@id}
+    phx-hook="RightClickMenu"
+    data-container-id={@container_id}
+    data-on-show={@on_show}
+    {@rest}
+  >
+    {render_slot(@inner_block)}
+  </div>
+  """
+end
+```
