@@ -1,0 +1,30 @@
+{
+  "name": "@phx-hook/resizable",
+  "version": "0.1.0",
+  "description": "Resize the width or height of elements",
+  "keywords": [
+    "Phoenix",
+    "Elixir",
+    "LiveView"
+  ],
+  "author": "Justin Tormey <justin@93software.com>",
+  "homepage": "https://github.com/elixir-saas/phx-hook/tree/main/packages/resizable",
+  "license": "MIT",
+  "main": "src/index.js",
+  "directories": {
+    "src": "src"
+  },
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "format": "prettier src --write"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elixir-saas/phx-hook.git"
+  },
+  "bugs": {
+    "url": "https://github.com/elixir-saas/phx-hook/issues"
+  }
+}
