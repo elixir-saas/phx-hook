@@ -1,6 +1,6 @@
 {
   "name": "@phx-hook/resizable",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Resize the width or height of elements",
   "keywords": [
     "Phoenix",
