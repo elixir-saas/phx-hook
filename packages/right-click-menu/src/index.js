@@ -34,7 +34,7 @@ export default function () {
       let containerID = this.el.dataset["containerId"];
 
       if (containerID) {
-        // Custom container, check if event.target is within container.
+        // Custom container, check if event.target is within container
         let container = document.getElementById(containerID);
 
         if (!container) {
@@ -43,9 +43,8 @@ export default function () {
 
         show = container.contains(event.target);
       } else {
-        // Infer container from event.target, check if has hook element as child.
-        let container = event.target;
-        show = new Array(...container.children).includes(this.el);
+        // Infer container from parentElement, check if event.target is within container
+        show = this.el.parentElement.contains(event.target);
       }
 
       if (show) {
