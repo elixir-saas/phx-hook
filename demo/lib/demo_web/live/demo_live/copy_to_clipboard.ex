@@ -81,6 +81,10 @@ defmodule DemoWeb.DemoLive.CopyToClipboard do
           </ol>
         </div>
       </div>
+
+      <div class="mt-12">
+        <.input name="pastebox" type="textarea" value="" rows={10} placeholder="Try pasting here!" />
+      </div>
     </Layouts.app>
     """
   end
