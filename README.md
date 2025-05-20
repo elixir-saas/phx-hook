@@ -10,6 +10,7 @@ A collection of useful hooks for Phoenix LiveView JavaScript interop.
 
 ## Hooks
 
+* [`@phx-hook/audio`](./packages/audio) - Play audio following a user interaction.
 * [`@phx-hook/copy-to-clipboard`](./packages/copy-to-clipboard) - Copy values to the clipboard.
 * [`@phx-hook/drag-drop-detector`](./packages/drag-drop-detector) - Add classes for drag and drop events.
 * [`@phx-hook/movable`](./packages/movable) - Allow users to move and resize elements freely.

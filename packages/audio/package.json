@@ -1,0 +1,31 @@
+{
+  "name": "@phx-hook/audio",
+  "version": "0.1.0",
+  "description": "Play audio following a user interaction",
+  "keywords": [
+    "Phoenix",
+    "Elixir",
+    "LiveView",
+    "Audio"
+  ],
+  "author": "Justin Tormey <justin@93software.com>",
+  "homepage": "https://github.com/elixir-saas/phx-hook/tree/main/packages/audio",
+  "license": "MIT",
+  "main": "src/index.js",
+  "directories": {
+    "src": "src"
+  },
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "format": "prettier src --write"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elixir-saas/phx-hook.git"
+  },
+  "bugs": {
+    "url": "https://github.com/elixir-saas/phx-hook/issues"
+  }
+}
