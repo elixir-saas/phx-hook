@@ -51,11 +51,25 @@ export default function () {
       if (show) {
         event.preventDefault();
 
+        // Position first, so that bounding client rect height is accurate
         Object.assign(this.el.style, {
           display: "block",
           position: "absolute",
-          top: `${event.pageY}px`,
-          left: `${event.pageX}px`,
+        });
+
+        const rect = this.el.getBoundingClientRect();
+
+        // Position to top of cursor if would otherwise render outside window
+        let top = event.pageY;
+        if (top + rect.height > window.innerHeight) top -= rect.height;
+
+        // Position to left of cursor if would otherwise render outside window
+        let left = event.pageX;
+        if (left + rect.width > window.innerWidth) left -= rect.width;
+
+        Object.assign(this.el.style, {
+          top: `${top}px`,
+          left: `${left}px`,
         });
 
         let onShowJS = this.el.dataset["onShow"];
