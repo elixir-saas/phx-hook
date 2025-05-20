@@ -4,6 +4,8 @@ Play audio following a user interaction.
 
 [See it in action (Demo).](https://phx-hook.elixir-saas.com/audio)
 
+Find free sound effects on [Freesound](https://freesound.org/).
+
 ## Usage
 
 ```js
