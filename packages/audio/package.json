@@ -1,6 +1,6 @@
 {
   "name": "@phx-hook/audio",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Play audio following a user interaction",
   "keywords": [
     "Phoenix",
