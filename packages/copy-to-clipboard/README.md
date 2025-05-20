@@ -81,7 +81,29 @@ For example, if you add a `"group"` TailwindCSS class to the button element, you
 </button>
 ```
 
-If the `group-data-copied:` variant is too cumbersome, consider creating custom utility classes instead:
+If the `group-data-copied:` variant is too cumbersome, you might find it helpful to add a Tailwind variant for the copied state.
+
+Using Tailwind v4:
+
+```css
+/* In assets/css/app.css */
+
+/* Add variants for the class names used by @phx-hook/copy-to-clipboard */
+@custom-variant copied ([data-copied]&, [data-copied] &);
+```
+
+Using Tailwind v3:
+
+```js
+// In assets/tailwind.config.js
+
+plugins: [
+  /* Add variants for the class names used by @phx-hook/copy-to-clipboard */
+  plugin(({addVariant}) => addVariant("copied", ["[data-copied]&", "[data-copied] &"])),
+]
+```
+
+You can also achieve this without Tailwind, by defining custom utility classes instead:
 
 ```css
 /* In assets/css/app.css */
@@ -116,8 +138,8 @@ def copy_button(assigns) do
     phx-click={JS.dispatch("phx:copy")}
     {@rest}
   >
-    <span class="on-copy-hide">{render_slot(@inner_block)}</span>
-    <span class="on-copy-show">Copied!</span>
+    <span class="copied:hidden">{render_slot(@inner_block)}</span>
+    <span class="copied:inline hidden">Copied!</span>
   </.button>
   """
 end

@@ -101,6 +101,9 @@
 @custom-variant sortable-chosen (.sortable-chosen&, .sortable-chosen &);
 @custom-variant sortable-drag (.sortable-drag&, .sortable-drag &);
 
+/* Add variants for the class names used by @phx-hook/copy-to-clipboard */
+@custom-variant copied ([data-copied]&, [data-copied] &);
+
 /* Add variants for the class names used by @phx-hook/drag-drop-detector */
 @custom-variant drag-active (.drag-active&, .drag-active &);
 
@@ -113,8 +116,3 @@
 [data-phx-session] { display: contents }
 
 /* This file is for your main application CSS */
-
-/* Utility classes for displaying elements based on data-copied attribute */
-[data-copied] > .on-copy-hide { display: none; }
-[data-copied] > .on-copy-show { display: inline; }
-:not([data-copied]) > .on-copy-show { display: none; }

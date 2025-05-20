@@ -107,8 +107,8 @@ defmodule DemoWeb.DemoLive.CopyToClipboard do
   def copy_button(assigns) do
     ~H"""
     <.button {@rest} variant="primary" phx-click={JS.dispatch("phx:copy", to: @dispatch_to)}>
-      <span class="on-copy-hide">{render_slot(@inner_block)}</span>
-      <span class="on-copy-show">Copied!</span>
+      <span class="copied:hidden">{render_slot(@inner_block)}</span>
+      <span class="copied:inline hidden">Copied!</span>
     </.button>
     """
   end
