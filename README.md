@@ -21,6 +21,8 @@ A collection of useful hooks for Phoenix LiveView JavaScript interop.
 * [`@phx-hook/right-click-menu`](./packages/right-click-menu) - Open custom context menus on right click.
 * [`@phx-hook/sortable`](./packages/sortable) - Easy drag-and-drop sorting with [Sortable.js](https://sortablejs.github.io/Sortable/).
 
+See interactive examples in the [demo application](https://phx-hook.elixir-saas.com/).
+
 ## Installation
 
 To install a `phx-hook` from the root of your Phoenix project, run:
