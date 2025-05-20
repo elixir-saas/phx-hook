@@ -97,6 +97,47 @@ defmodule DemoWeb.DemoLive.FocusList do
           </div>
         </.right_click_menu>
       </div>
+
+      <.header>
+        Focus List in "Jump Menu"
+      </.header>
+
+      <div
+        id="focus_list_4"
+        class="dropdown"
+        phx-hook="FocusList"
+        data-items-selector="ul li"
+        data-focus-selector="a"
+      >
+        <button type="button" class="btn m-1">
+          Jump <.icon name="hero-arrow-uturn-down" />
+        </button>
+        <ul class="dropdown-content menu bg-base-200 rounded-box z-1 w-52 p-2 shadow-sm">
+          <li :for={i <- 1..@jump_items}>
+            <.link
+              href={"#jump-#{i}"}
+              class="focus:bg-base-100 flex items-center justify-between"
+              data-jump-key={jump_key(i, @jump_items)}
+            >
+              Item {i}
+              <span
+                :if={jump_key = jump_key(i, @jump_items)}
+                class="size-6 flex items-center justify-center bg-base-100 border border-base-300 rounded"
+              >
+                <span class="text-xs">{jump_key}</span>
+              </span>
+            </.link>
+          </li>
+        </ul>
+      </div>
+
+      <div
+        :for={i <- 1..@jump_items}
+        id={"jump-#{i}"}
+        class="h-64 px-6 pt-4 scroll-m-4 bg-base-300 rounded"
+      >
+        <.header>Item {i}</.header>
+      </div>
     </Layouts.app>
     """
   end
@@ -104,7 +145,7 @@ defmodule DemoWeb.DemoLive.FocusList do
   @items ~w"Alpha Beta Gamma Delta Epsilon Zeta Eta Theta Iota"
 
   def mount(_params, _session, socket) do
-    {:ok, put_search(socket)}
+    {:ok, assign(socket, jump_items: 12) |> put_search()}
   end
 
   def handle_event("flash", %{"message" => message}, socket) do
@@ -128,5 +169,13 @@ defmodule DemoWeb.DemoLive.FocusList do
     socket
     |> assign(:search_form, to_form(params, as: :search))
     |> assign(:search_results, results)
+  end
+
+  def jump_key(i, jump_items) do
+    cond do
+      i < 10 -> i
+      i == jump_items -> "k"
+      true -> nil
+    end
   end
 end
