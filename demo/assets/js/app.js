@@ -29,6 +29,7 @@ import Sortable from "../vendor/Sortable"
 import AudioHook from "@phx-hook/audio"
 import CopyToClipboardHook from "@phx-hook/copy-to-clipboard"
 import DragDropDetectorHook from "@phx-hook/drag-drop-detector"
+import FocusListHook from "@phx-hook/focus-list"
 import MovableHook from "@phx-hook/movable"
 import OpenWindowHook from "@phx-hook/open-window"
 import PreventUnsavedChangesHook from "@phx-hook/prevent-unsaved-changes"
@@ -40,6 +41,7 @@ const hooks = {
   Audio: AudioHook(),
   CopyToClipboard: CopyToClipboardHook(),
   DragDropDetector: DragDropDetectorHook(),
+  FocusList: FocusListHook(),
   Movable: MovableHook(),
   OpenWindow: OpenWindowHook(),
   PreventUnsavedChanges: PreventUnsavedChangesHook(),

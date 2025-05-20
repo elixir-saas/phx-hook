@@ -1,0 +1,132 @@
+defmodule DemoWeb.DemoLive.FocusList do
+  use DemoWeb, :live_view
+
+  def render(assigns) do
+    ~H"""
+    <Layouts.app flash={@flash}>
+      <.header>
+        Focus List
+      </.header>
+
+      <div class="mb-12">
+        <ul
+          id="focus_list_1"
+          class="menu bg-base-200 rounded-box ring ring-base-300"
+          phx-hook="FocusList"
+          data-focus-selector="button"
+        >
+          <li :for={i <- 1..10}>
+            <button
+              type="button"
+              class="focus:bg-base-100"
+              phx-click="flash"
+              phx-value-message={"Selected #{i}"}
+            >
+              Item {i}
+            </button>
+          </li>
+        </ul>
+      </div>
+
+      <.header>
+        Focus List with Search
+      </.header>
+
+      <div
+        id="focus_list_2"
+        class="w-64 mb-12"
+        phx-hook="FocusList"
+        data-home-selector="form input"
+        data-items-selector="[data-result]"
+        data-focus-selector="button"
+      >
+        <.form for={@search_form} phx-submit="search" phx-change="search">
+          <.input field={@search_form[:query]} placeholder="Search..." autocomplete="off" />
+        </.form>
+        <ul :if={@search_results != []} class="w-full menu bg-base-200 rounded-box ring ring-base-300">
+          <li :for={result <- @search_results} data-result>
+            <button
+              type="button"
+              class="focus:bg-base-100"
+              phx-click="flash"
+              phx-value-message={"Selected #{result}"}
+            >
+              {result}
+            </button>
+          </li>
+        </ul>
+      </div>
+
+      <.header>
+        Focus List in Right Click Menu
+      </.header>
+
+      <div class="mb-12 bg-base-300 p-16 mb-16 flex items-center justify-center">
+        <span class="text-sm text-base-content">
+          Right click me.
+        </span>
+        <.right_click_menu id="focus_list_3_menu" on_show={JS.focus(to: "#focus_list_3_close")}>
+          <div
+            id="focus_list_3"
+            class="menu bg-base-200 rounded-box ring ring-base-300"
+            phx-hook="FocusList"
+            data-home-selector="#focus_list_3_close"
+            data-items-selector="ul li"
+            data-focus-selector="button"
+          >
+            <button
+              id="focus_list_3_close"
+              type="button"
+              class="sr-only"
+              phx-click={JS.exec("phx-remove", to: "#focus_list_3_menu")}
+            >
+              Close
+            </button>
+            <ul>
+              <li :for={i <- 1..6}>
+                <button
+                  type="button"
+                  class="focus:bg-base-100"
+                  phx-click="flash"
+                  phx-value-message={"Selected #{i}"}
+                >
+                  Item {i}
+                </button>
+              </li>
+            </ul>
+          </div>
+        </.right_click_menu>
+      </div>
+    </Layouts.app>
+    """
+  end
+
+  @items ~w"Alpha Beta Gamma Delta Epsilon Zeta Eta Theta Iota"
+
+  def mount(_params, _session, socket) do
+    {:ok, put_search(socket)}
+  end
+
+  def handle_event("flash", %{"message" => message}, socket) do
+    {:noreply, put_flash(socket, :info, message)}
+  end
+
+  def handle_event("search", %{"search" => %{"query" => query}}, socket) do
+    {:noreply, put_search(socket, query)}
+  end
+
+  def put_search(socket, query \\ "") do
+    params = %{"query" => query}
+    query = String.downcase(query)
+
+    results =
+      case query do
+        "" -> []
+        query -> Enum.filter(@items, &(String.downcase(&1) =~ query))
+      end
+
+    socket
+    |> assign(:search_form, to_form(params, as: :search))
+    |> assign(:search_results, results)
+  end
+end

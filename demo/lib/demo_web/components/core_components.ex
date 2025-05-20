@@ -504,7 +504,7 @@ defmodule DemoWeb.CoreComponents do
     ~H"""
     <div
       id={@id}
-      class="hidden"
+      class="hidden z-10"
       phx-hook="RightClickMenu"
       phx-remove={JS.hide(transition: {"transition-opacity", "opacity-100", "opacity-0"})}
       data-container-id={@container_id}
