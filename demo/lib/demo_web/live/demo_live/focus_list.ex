@@ -41,7 +41,13 @@ defmodule DemoWeb.DemoLive.FocusList do
         data-focus-selector="button"
       >
         <.form for={@search_form} phx-submit="search" phx-change="search">
-          <.input field={@search_form[:query]} placeholder="Search..." autocomplete="off" />
+          <.input
+            field={@search_form[:query]}
+            placeholder="Search..."
+            autocomplete="off"
+            phx-key="Escape"
+            phx-keydown="clear_search"
+          />
         </.form>
         <ul :if={@search_results != []} class="w-full menu bg-base-200 rounded-box ring ring-base-300">
           <li :for={result <- @search_results} data-result>
@@ -154,6 +160,10 @@ defmodule DemoWeb.DemoLive.FocusList do
 
   def handle_event("search", %{"search" => %{"query" => query}}, socket) do
     {:noreply, put_search(socket, query)}
+  end
+
+  def handle_event("clear_search", _params, socket) do
+    {:noreply, put_search(socket)}
   end
 
   def put_search(socket, query \\ "") do
