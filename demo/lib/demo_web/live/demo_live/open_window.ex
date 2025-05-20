@@ -17,4 +17,8 @@ defmodule DemoWeb.DemoLive.OpenWindow do
     </Layouts.app>
     """
   end
+
+  def mount(_params, _session, socket) do
+    {:ok, assign(socket, :page_title, "@phx-hook/open-window")}
+  end
 end

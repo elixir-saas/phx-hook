@@ -32,6 +32,7 @@ defmodule DemoWeb.DemoLive.DragDropDetector do
   def mount(_params, _session, socket) do
     {:ok,
      socket
+     |> assign(:page_title, "@phx-hook/drag-drop-detector")
      |> put_form(%{"global" => "false"})
      |> allow_upload(:file,
        accept: ~w(.png .jpg .pdf),

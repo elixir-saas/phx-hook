@@ -46,6 +46,10 @@ defmodule DemoWeb.DemoLive.PreventUnsavedChanges do
     """
   end
 
+  def mount(_params, _session, socket) do
+    {:ok, assign(socket, :page_title, "@phx-hook/prevent-unsaved-changes")}
+  end
+
   def handle_params(params, _uri, socket) do
     user =
       case params do

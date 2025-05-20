@@ -95,7 +95,10 @@ defmodule DemoWeb.DemoLive.CopyToClipboard do
       </ol>
       """
 
-    {:ok, assign(socket, :html_value, html_value)}
+    {:ok,
+     socket
+     |> assign(:page_title, "@phx-hook/copy-to-clipboard")
+     |> assign(:html_value, html_value)}
   end
 
   ## Components

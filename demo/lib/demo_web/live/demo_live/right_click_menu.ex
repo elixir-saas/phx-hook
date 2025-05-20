@@ -74,7 +74,10 @@ defmodule DemoWeb.DemoLive.RightClickMenu do
       %{id: 5, name: "Ethan", read: false, message: "Lorem ipsum doler sid ept dracun"}
     ]
 
-    {:ok, assign(socket, :customers, customers)}
+    {:ok,
+     socket
+     |> assign(:page_title, "@phx-hook/right-click-menu")
+     |> assign(:customers, customers)}
   end
 
   def handle_event("mark_read", %{"id" => id}, socket) do

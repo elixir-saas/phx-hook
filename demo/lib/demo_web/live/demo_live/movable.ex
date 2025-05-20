@@ -65,7 +65,10 @@ defmodule DemoWeb.DemoLive.Movable do
   end
 
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, top: nil, left: nil, width: nil, height: nil)}
+    {:ok,
+     socket
+     |> assign(:page_title, "@phx-hook/movable")
+     |> assign(top: nil, left: nil, width: nil, height: nil)}
   end
 
   def handle_event("moved", %{"top" => top, "left" => left}, socket) do

@@ -151,7 +151,11 @@ defmodule DemoWeb.DemoLive.FocusList do
   @items ~w"Alpha Beta Gamma Delta Epsilon Zeta Eta Theta Iota"
 
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, jump_items: 12) |> put_search()}
+    {:ok,
+     socket
+     |> assign(:page_title, "@phx-hook/focus-list")
+     |> assign(:jump_items, 12)
+     |> put_search()}
   end
 
   def handle_event("flash", %{"message" => message}, socket) do

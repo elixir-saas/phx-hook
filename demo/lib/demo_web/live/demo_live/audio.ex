@@ -61,6 +61,7 @@ defmodule DemoWeb.DemoLive.Audio do
   def mount(_params, _session, socket) do
     {:ok,
      socket
+     |> assign(:page_title, "@phx-hook/audio")
      |> assign(:click_audio, ~p"/audio/click.wav")
      |> assign(:rising_tone_audio, ~p"/audio/rising-tone.mp3")}
   end

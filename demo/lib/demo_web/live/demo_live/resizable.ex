@@ -116,7 +116,10 @@ defmodule DemoWeb.DemoLive.Resizable do
   end
 
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, resize_1: 150, resize_2: 150, resize_3: 150, resize_4: 150)}
+    {:ok,
+     socket
+     |> assign(:page_title, "@phx-hook/resizable")
+     |> assign(resize_1: 150, resize_2: 150, resize_3: 150, resize_4: 150)}
   end
 
   def handle_event("resize_1", %{"width" => width}, socket) do
