@@ -19,6 +19,7 @@ defmodule DemoWeb.Router do
 
     get "/", PageController, :home
 
+    live "/audio", DemoLive.Audio
     live "/copy-to-clipboard", DemoLive.CopyToClipboard
     live "/drag-drop-detector", DemoLive.DragDropDetector
     live "/movable", DemoLive.Movable

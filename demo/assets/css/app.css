@@ -101,6 +101,9 @@
 @custom-variant sortable-chosen (.sortable-chosen&, .sortable-chosen &);
 @custom-variant sortable-drag (.sortable-drag&, .sortable-drag &);
 
+/* Add variants for the class names used by @phx-hook/audio */
+@custom-variant playing (.playing&, .playing &);
+
 /* Add variants for the class names used by @phx-hook/copy-to-clipboard */
 @custom-variant copied ([data-copied]&, [data-copied] &);
 

@@ -26,6 +26,7 @@ import topbar from "../vendor/topbar"
 import Sortable from "../vendor/Sortable"
 
 // Import & configure hooks
+import AudioHook from "@phx-hook/audio"
 import CopyToClipboardHook from "@phx-hook/copy-to-clipboard"
 import DragDropDetectorHook from "@phx-hook/drag-drop-detector"
 import MovableHook from "@phx-hook/movable"
@@ -36,6 +37,7 @@ import RightClickMenuHook from "@phx-hook/right-click-menu"
 import SortableHook from "@phx-hook/sortable"
 
 const hooks = {
+  Audio: AudioHook(),
   CopyToClipboard: CopyToClipboardHook(),
   DragDropDetector: DragDropDetectorHook(),
   Movable: MovableHook(),

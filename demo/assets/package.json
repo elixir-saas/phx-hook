@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@phx-hook/audio": "^0.1.0",
     "@phx-hook/copy-to-clipboard": "^0.1.0",
     "@phx-hook/drag-drop-detector": "^0.2.0",
     "@phx-hook/movable": "^0.1.0",
