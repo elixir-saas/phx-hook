@@ -45,6 +45,8 @@ export default function () {
           this.current = items[Math.min(index + 1, items.length - 1)];
           this.focusCurrent();
         }
+
+        return;
       }
 
       if (event.key === "ArrowUp" || event.key === "ArrowLeft") {
@@ -65,6 +67,16 @@ export default function () {
           this.current = items[Math.max(index - 1, 0)];
           this.focusCurrent();
         }
+
+        return;
+      }
+
+      // Trigger click on an element when a specific "jump" key is used
+      let jumpEl = this.el.querySelector(`[data-jump-key="${event.key}"]`);
+
+      if (jumpEl) {
+        event.preventDefault();
+        jumpEl.click();
       }
     },
 

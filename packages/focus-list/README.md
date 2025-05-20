@@ -48,6 +48,10 @@ This hook does not have any options.
 * `data-home-selector`: Query selector for a "home" element to focus. The home element is an element outside of the list of item elements, it will gain focus when navigating beyond the start or end of the item elements list. Useful for targeting a hidden close button or a search input. By default, there is no home element.
 * `data-items-selector`: Query selector that targets the list of items that can be navigated. If not provided, the direct children of the hook element are used.
 
+## Child Attributes
+
+* `data-jump-key`: Set to the value of a key on any child element. When that key is pressed while the hook element has focus, a click event will trigger on the child element. Useful for adding shortcuts to dropdown menu items. Avoid when the hook element contains an input element, as it could mistakenly trigger a jump. This is an alternative to [LiveView Key Events](https://hexdocs.pm/phoenix_live_view/bindings.html#key-events).
+
 ## TailwindCSS
 
 To visually distinguish focused items from its peers, you can add a Tailwind class with the focus variant. For example: `focus:bg-base-100`.
