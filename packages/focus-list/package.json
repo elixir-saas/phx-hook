@@ -17,6 +17,9 @@
   "files": [
     "src"
   ],
+  "bin": {
+    "vendor": "./vendor.js"
+  },
   "scripts": {
     "format": "prettier src --write"
   },

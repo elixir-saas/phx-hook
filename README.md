@@ -56,6 +56,12 @@ Vendoring a hook is easy, just copy the source file from this repo. For example,
 + import SortableHook from "./hooks/sortable";
 ```
 
+If manual copying sounds tedious, each package includes a command to instantly copy its code into your project for you. From your project root directory, simply run:
+
+```sh
+npx @phx-hook/package vendor
+```
+
 Contributions back to `@phx-hook` are also welcome!
 
 ## Development
