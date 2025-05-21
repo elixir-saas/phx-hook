@@ -19,8 +19,8 @@ let liveSocket = new LiveSocket("/live", Socket, { hooks, ... });
 ```heex
 <button
   id="window_opener"
+  phx-click={JS.dispatch("phx:open")}
   phx-hook="OpenWindow"
-  data-event="opened_window"
   data-window-url="https://example.com"
   data-window-name="Example"
   data-window-dimensions="1080:720:center"
@@ -31,14 +31,14 @@ let liveSocket = new LiveSocket("/live", Socket, { hooks, ... });
 
 ## Options
 
-* `defaults`: An object of default window options (third argument of [window.open](https://developer.mozilla.org/en-US/docs/Web/API/Window/open))
+* `defaults`: An object of default window options (third argument of [window.open](https://developer.mozilla.org/en-US/docs/Web/API/Window/open)).
+* `openEvent`: The event to listen for to open the new window. Defaults to `"phx:open"`.
 
 ## Attributes
 
-* `data-window-url`: URL to open in the new window (first argument of [window.open](https://developer.mozilla.org/en-US/docs/Web/API/Window/open))
-* `data-window-name`: Name to give to the new window (second argument of [window.open](https://developer.mozilla.org/en-US/docs/Web/API/Window/open))
-* `data-window-dimensions`: Options helper for applying window dimensions, can be a string in one of the following formats: `center`, `w:h`, `w:h:center`, `w:h:x:y`
-* `data-event`: Name of event to send to the LiveView when the hook is triggered
+* `data-window-url`: URL to open in the new window (first argument of [window.open](https://developer.mozilla.org/en-US/docs/Web/API/Window/open)).
+* `data-window-name`: Name to give to the new window (second argument of [window.open](https://developer.mozilla.org/en-US/docs/Web/API/Window/open)).
+* `data-window-dimensions`: Options helper for applying window dimensions, can be a string in one of the following formats: `center`, `w:h`, `w:h:center`, `w:h:x:y`.
 
 ## HEEx Component
 
@@ -60,6 +60,7 @@ def open_window_button(assigns) do
   ~H"""
   <.button
     id={@id}
+    phx-click={JS.dispatch("phx:open")}
     phx-hook="OpenWindow"
     data-window-url={@window_url}
     data-window-name={@window_name}

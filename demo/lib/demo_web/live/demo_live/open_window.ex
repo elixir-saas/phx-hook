@@ -7,6 +7,7 @@ defmodule DemoWeb.DemoLive.OpenWindow do
       <.button
         variant="primary"
         id="window_opener"
+        phx-click={JS.dispatch("phx:open")}
         phx-hook="OpenWindow"
         data-window-url={url(~p"/open-window")}
         data-window-name={"Window #{:os.system_time()}"}
