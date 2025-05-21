@@ -126,6 +126,7 @@ export default function (options = {}) {
 
       let rect = this.resizeTarget.getBoundingClientRect();
 
+      this.snapped = false;
       this.initWidth = rect.width;
       this.initHeight = rect.height;
       this.clientInitX = event.clientX;
@@ -177,12 +178,43 @@ export default function (options = {}) {
       if (w && !isNaN(max) && w > max) w = max;
       if (h && !isNaN(max) && h > max) h = max;
 
-      // Apply class if element will snap on mouseup
-      if (this.el.dataset["onSnap"]) {
-        if ((w && w === min) || (h && h === min)) {
-          this.el.classList.add(willSnapClass);
-        } else {
-          this.el.classList.remove(willSnapClass);
+      // Apply snap behavior with a trigger and threshold
+      let onSnap = this.el.dataset["onSnap"];
+      let onSnapReverse = this.el.dataset["onSnapReverse"];
+
+      if (onSnap) {
+        let snapThreshold = this.el.dataset["snapThreshold"]
+          ? parseInt(this.el.dataset["snapThreshold"])
+          : 1;
+
+        let snap = false;
+        if (this.resizeFrom === "right") snap = deltaX > snapThreshold;
+        if (this.resizeFrom === "left") snap = -deltaX > snapThreshold;
+        if (this.resizeFrom === "bottom") snap = deltaY > snapThreshold;
+        if (this.resizeFrom === "top") snap = -deltaY > snapThreshold;
+
+        let snapTrigger = this.el.dataset["snapTrigger"] || "mouseup";
+
+        if (snapTrigger === "mouseup") {
+          if (snap) {
+            this.el.classList.add(willSnapClass);
+          } else {
+            this.el.classList.remove(willSnapClass);
+          }
+        }
+
+        if (snapTrigger === "mousemove") {
+          if (snap) {
+            if (!this.snapped) {
+              this.snapped = true;
+              liveSocket.execJS(this.el, onSnap);
+            }
+          } else {
+            if (this.snapped && onSnapReverse) {
+              this.snapped = false;
+              liveSocket.execJS(this.el, onSnapReverse);
+            }
+          }
         }
       }
 

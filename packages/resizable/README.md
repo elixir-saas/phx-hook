@@ -83,12 +83,15 @@ The above example shows why you might want to use a CSS variable instead of mani
 ## Attributes
 
 * `data-on-snap`: A JS command that will be executed when the resizable element "snaps" (the user lifts their mouse after dragging the element to its minimum width), Requires `data-resize-min` to be set.
+* `data-on-snap-reverse`: A JS command that will be executed when the resizable element has snapped and it is resized back to below the snap threshold. Only applicable when `data-snap-trigger` is set to `"mousemove"`.
 * `data-resize-event`: Event to push to the LiveView after the element is resized. If not set, no event is sent.
 * `data-resize-from`: Direction to place the handle for resizing the element, one of `"right"`, `"left"`, `"bottom"`, `"top"`. Defaults to `"right"`.
 * `data-resize-max`: Maximum width or height the element may be resized to.
 * `data-resize-min`: Minimum width or height the element may be resized to.
 * `data-resize-target`: Selector of a child element that should be treated as the resizable element. By default, the hook element is the resizable element.
 * `data-resize-var`: Name of a CSS variable to store the size value, instead of setting the width or height of the element directly. Useful for when other elements depend on this value. It is recommended that you render the element with an initial value for this variable when used, for example: `style="--resize-size: 150px;"`.
+* `data-snap-threshold`: An offset to apply before the resizable element will indicate or initiate a snap.
+* `data-snap-trigger`: Determines when a "snap" occurs, may be one of `"mouseup"`, `"mousemove"`. Defaults to `"mouseup"`.
 
 ## TailwindCSS
 
