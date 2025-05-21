@@ -1,6 +1,6 @@
 {
   "name": "@phx-hook/movable",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Allow users to move and resize elements freely",
   "keywords": [
     "Phoenix",

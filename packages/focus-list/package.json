@@ -1,6 +1,6 @@
 {
   "name": "@phx-hook/focus-list",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Focus items in a list with keyboard shortcuts",
   "keywords": [
     "Phoenix",

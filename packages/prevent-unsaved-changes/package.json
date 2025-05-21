@@ -1,6 +1,6 @@
 {
   "name": "@phx-hook/prevent-unsaved-changes",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Prompt users to prevent losing unsaved changes",
   "keywords": [
     "Phoenix",
