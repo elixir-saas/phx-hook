@@ -1,12 +1,25 @@
 export default function (options = {}) {
   let defaults = options.defaults || {};
   let openEvent = options.openEvent || "phx:open";
+  let closeEvent = options.openEvent || "phx:close";
+  let onCloseInterval = options.onCloseInterval || 500;
 
   return {
     mounted() {
+      this.windows = {};
+      this.intervals = [];
+
       this.handleOpen = this.handleOpen.bind(this);
+      this.handleClose = this.handleClose.bind(this);
 
       this.el.addEventListener(openEvent, this.handleOpen);
+      this.el.addEventListener(closeEvent, this.handleClose);
+    },
+
+    destroyed() {
+      for (let i = 0; i < this.intervals.length; i++) {
+        clearInterval(this.intervals[i]);
+      }
     },
 
     handleOpen() {
@@ -14,10 +27,35 @@ export default function (options = {}) {
       let windowName = this.el.dataset["windowName"];
       let windowDimensions = this.el.dataset["windowDimensions"];
 
-      window.open(windowUrl, windowName, objectToWindowOptions({
-        ...defaults,
-        ...decodeWindowDimensions(windowDimensions),
-      }));
+      let popup = window.open(
+        windowUrl,
+        windowName,
+        objectToWindowOptions({
+          ...defaults,
+          ...decodeWindowDimensions(windowDimensions),
+        }),
+      );
+
+      // Store the popup value to later close it
+      this.windows[windowName] = popup;
+
+      // Set up interval to detect when window is closed
+      let onWindowClose = this.el.dataset["onWindowClose"];
+      if (onWindowClose) {
+        let interval = setInterval(() => {
+          if (popup.closed) {
+            clearInterval(interval);
+            liveSocket.execJS(this.el, onWindowClose);
+          }
+        }, onCloseInterval);
+
+        this.intervals.push(interval);
+      }
+    },
+
+    handleClose(event) {
+      let popup = this.windows[event.detail.name];
+      if (popup && !popup.closed) popup.close();
     },
   };
 }

@@ -31,11 +31,14 @@ let liveSocket = new LiveSocket("/live", Socket, { hooks, ... });
 
 ## Options
 
+* `closeEvent`: The event to listen for to close a window. This event requires a `:name` key in the detail map, corresponding to the name of the window to close. Defaults to `"phx:close"`.
 * `defaults`: An object of default window options (third argument of [window.open](https://developer.mozilla.org/en-US/docs/Web/API/Window/open)).
-* `openEvent`: The event to listen for to open the new window. Defaults to `"phx:open"`.
+* `onCloseInterval`: Integer value for timing the interval that detects when a window is closed. Defaults to `500`.
+* `openEvent`: The event to listen for to open a window. Defaults to `"phx:open"`.
 
 ## Attributes
 
+* `data-on-window-close`: A JS command that will be executed when an open window is closed.
 * `data-window-url`: URL to open in the new window (first argument of [window.open](https://developer.mozilla.org/en-US/docs/Web/API/Window/open)).
 * `data-window-name`: Name to give to the new window (second argument of [window.open](https://developer.mozilla.org/en-US/docs/Web/API/Window/open)).
 * `data-window-dimensions`: Options helper for applying window dimensions, can be a string in one of the following formats: `center`, `w:h`, `w:h:center`, `w:h:x:y`.
