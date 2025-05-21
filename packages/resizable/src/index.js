@@ -75,6 +75,7 @@ export default function (options = {}) {
       this.appendResizeHandle();
 
       // Re-apply saved styles
+      this.setVarProperty(this.varPropertyValue);
       Object.assign(this.resizeTarget.style, this.style);
     },
 
@@ -103,6 +104,7 @@ export default function (options = {}) {
     },
 
     setVarProperty(value) {
+      if (!value) return;
       let propertyName = this.el.dataset["resizeVar"];
       if (propertyName) this.el.style.setProperty(propertyName, `${value}px`);
     },
@@ -185,7 +187,8 @@ export default function (options = {}) {
       }
 
       if (this.el.dataset["resizeVar"]) {
-        this.setVarProperty(w || h);
+        this.varPropertyValue = w || h;
+        this.setVarProperty(this.varPropertyValue);
       } else {
         let updates = {};
         if (w) updates.width = `${w}px`;
