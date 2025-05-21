@@ -42,10 +42,11 @@ The event pushed by `data-move-event` and `data-resize-event` includes the follo
 
 ```elixir
 %{
-  "top" => integer(),   # The current `top` style property
-  "left" => integer(),  # The current `left` style property
-  "width" => integer(), # The current `width` style property
-  "height" => integer() # The current `height` style property
+  "top" => integer(),    # The current top offset in px
+  "left" => integer(),   # The current left offset in px
+  "width" => integer(),  # The current width in px
+  "height" => integer(), # The current height in px
+  "z" => integer() | nil # The current zIndex property
 }
 ```
 
@@ -94,6 +95,7 @@ end
 * `data-resize-max-width`: Maximum width the element may be resized to.
 * `data-resize-min-height`: Minimum height the element may be resized to.
 * `data-resize-min-width`: Minimum width the element may be resized to.
+* `data-z-group`: An identifier that is shared with other movable elements. When an element is interacted with, its `z-index` property will be set so that it is the highest in the group, placing it on top of other elements.
 
 ## TailwindCSS
 

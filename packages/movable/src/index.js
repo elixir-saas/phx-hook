@@ -75,13 +75,34 @@ export default function (options = {}) {
 
     pushPosition(eventName) {
       let rect = this.el.getBoundingClientRect();
+      let zIndex = parseInt(this.el.style.zIndex);
 
       this.pushEvent(eventName, {
         top: this.el.offsetTop,
         left: this.el.offsetLeft,
         width: rect.width,
         height: rect.height,
+        z: isNaN(zIndex) ? null : zIndex,
       });
+    },
+
+    updateZGroupIndex() {
+      let zGroup = this.el.dataset["zGroup"];
+      if (zGroup) {
+        let zMax = 0;
+        let groupEls = document.querySelectorAll(`[data-z-group="${zGroup}"]`);
+
+        for (let i = 0; i < groupEls.length; i++) {
+          let el = groupEls[i];
+          let zIndex = parseInt(el.style.zIndex);
+          if (!isNaN(zIndex)) zMax = Math.max(zIndex, zMax);
+        }
+
+        if (this.el.style.zIndex === `${zMax}`) return;
+
+        Object.assign(this.style, { zIndex: `${zMax + 1}` });
+        Object.assign(this.el.style, this.style);
+      }
     },
 
     handleMouseDown(event) {
@@ -93,6 +114,7 @@ export default function (options = {}) {
       this.clientInitX = event.clientX;
 
       this.el.classList.add(activeClass);
+      this.updateZGroupIndex();
 
       document.addEventListener("mouseup", this.handleMouseUp);
       document.addEventListener("mousemove", this.handleMouseMove);
@@ -133,6 +155,7 @@ export default function (options = {}) {
 
       this.activeCorner = cornerEl;
       this.el.classList.add(resizeClass);
+      this.updateZGroupIndex();
 
       document.addEventListener("mouseup", this.handleCornerMouseUp);
       document.addEventListener("mousemove", this.handleCornerMouseMove);
