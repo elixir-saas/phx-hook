@@ -87,6 +87,8 @@ export default function (options = {}) {
     handleMouseDown(event) {
       event.preventDefault();
 
+      this.initOffsetTop = this.el.offsetTop;
+      this.initOffsetLeft = this.el.offsetLeft;
       this.clientInitY = event.clientY;
       this.clientInitX = event.clientX;
 
@@ -110,12 +112,9 @@ export default function (options = {}) {
       let deltaY = this.clientInitY - event.clientY;
       let deltaX = this.clientInitX - event.clientX;
 
-      this.clientInitY = event.clientY;
-      this.clientInitX = event.clientX;
-
       let updates = {
-        top: `${this.el.offsetTop - deltaY}px`,
-        left: `${this.el.offsetLeft - deltaX}px`,
+        top: `${this.initOffsetTop - deltaY}px`,
+        left: `${this.initOffsetLeft - deltaX}px`,
       };
 
       Object.assign(this.style, updates);
@@ -126,6 +125,9 @@ export default function (options = {}) {
       event.preventDefault();
       event.stopPropagation();
 
+      this.initRect = this.el.getBoundingClientRect();
+      this.initOffsetTop = this.el.offsetTop;
+      this.initOffsetLeft = this.el.offsetLeft;
       this.clientInitX = event.clientX;
       this.clientInitY = event.clientY;
 
@@ -156,11 +158,6 @@ export default function (options = {}) {
       let deltaY = this.clientInitY - event.clientY;
       let deltaX = this.clientInitX - event.clientX;
 
-      this.clientInitY = event.clientY;
-      this.clientInitX = event.clientX;
-
-      let rect = this.el.getBoundingClientRect();
-
       let w;
       let h;
       let left;
@@ -168,30 +165,30 @@ export default function (options = {}) {
 
       // Handle top-left corner
       if (cornerIndex === "0") {
-        w = rect.width + deltaX;
-        h = rect.bottom - rect.top + deltaY;
-        left = this.el.offsetLeft - deltaX;
-        top = this.el.offsetTop - deltaY;
+        w = this.initRect.width + deltaX;
+        h = this.initRect.bottom - this.initRect.top + deltaY;
+        left = this.initOffsetLeft - deltaX;
+        top = this.initOffsetTop - deltaY;
       }
 
       // Handle top-right corner
       if (cornerIndex === "1") {
-        w = rect.width - deltaX;
-        h = rect.bottom - rect.top + deltaY;
-        top = this.el.offsetTop - deltaY;
+        w = this.initRect.width - deltaX;
+        h = this.initRect.bottom - this.initRect.top + deltaY;
+        top = this.initOffsetTop - deltaY;
       }
 
       // Handle bottom-left corner
       if (cornerIndex === "2") {
-        w = rect.width + deltaX;
-        h = rect.height - deltaY;
-        left = this.el.offsetLeft - deltaX;
+        w = this.initRect.width + deltaX;
+        h = this.initRect.height - deltaY;
+        left = this.initOffsetLeft - deltaX;
       }
 
       // Handle bottom-right corner
       if (cornerIndex === "3") {
-        w = rect.width - deltaX;
-        h = rect.height - deltaY;
+        w = this.initRect.width - deltaX;
+        h = this.initRect.height - deltaY;
       }
 
       // Apply aspect ratio
@@ -219,10 +216,10 @@ export default function (options = {}) {
           h = w / ratio + offset;
 
           if (cornerIndex === "0") {
-            top = this.el.offsetTop - deltaX / ratio;
+            top = this.initOffsetTop - deltaX / ratio;
           }
           if (cornerIndex === "1") {
-            top = this.el.offsetTop + deltaX / ratio;
+            top = this.initOffsetTop + deltaX / ratio;
           }
         } else {
           h = top = undefined;
