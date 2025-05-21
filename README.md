@@ -8,6 +8,8 @@
 
 A collection of useful hooks for Phoenix LiveView JavaScript interop.
 
+See interactive examples in the [demo application](https://phx-hook.elixir-saas.com/).
+
 ## Hooks
 
 * [`@phx-hook/audio`](./packages/audio) - Play audio following a user interaction.
@@ -20,8 +22,6 @@ A collection of useful hooks for Phoenix LiveView JavaScript interop.
 * [`@phx-hook/resizable`](./packages/resizable) - Resize the width or height of elements.
 * [`@phx-hook/right-click-menu`](./packages/right-click-menu) - Open custom context menus on right click.
 * [`@phx-hook/sortable`](./packages/sortable) - Easy drag-and-drop sorting with [Sortable.js](https://sortablejs.github.io/Sortable/).
-
-See interactive examples in the [demo application](https://phx-hook.elixir-saas.com/).
 
 ## Installation
 
