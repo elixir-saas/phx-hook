@@ -22,7 +22,10 @@ defmodule DemoWeb.DemoLive.Resizable do
           data-resize-event="resize_1"
           data-resize-min="125"
           data-resize-max="300"
+          data-snap-trigger={if @form[:mousemove].value == "true", do: "mousemove"}
+          data-snap-threshold="50"
           data-on-snap={hide_sidebar()}
+          data-on-snap-reverse={show_sidebar()}
         >
           <.resize_bar
             id="sidebar_1"
@@ -41,7 +44,16 @@ defmodule DemoWeb.DemoLive.Resizable do
             </div>
           </.resize_bar>
           <div id="container_1" class="flex-1 flex p-2 ml-[var(--resize-1)]">
-            <div class="flex-1 border border-dashed border-base-content/50 rounded" />
+            <div class="flex-1 flex items-center justify-center border border-dashed border-base-content/50 rounded">
+              <.form for={@form} phx-change="change">
+                <.input
+                  type="checkbox"
+                  class="toggle"
+                  field={@form[:mousemove]}
+                  label='data-snap-trigger="mousemove"'
+                />
+              </.form>
+            </div>
           </div>
         </div>
       </.browser_mock>
@@ -119,7 +131,8 @@ defmodule DemoWeb.DemoLive.Resizable do
     {:ok,
      socket
      |> assign(:page_title, "@phx-hook/resizable")
-     |> assign(resize_1: 150, resize_2: 150, resize_3: 150, resize_4: 150)}
+     |> assign(resize_1: 150, resize_2: 150, resize_3: 150, resize_4: 150)
+     |> put_form(%{"mousemove" => "false"})}
   end
 
   def handle_event("resize_1", %{"width" => width}, socket) do
@@ -136,6 +149,14 @@ defmodule DemoWeb.DemoLive.Resizable do
 
   def handle_event("resize_4", %{"height" => height}, socket) do
     {:noreply, assign(socket, :resize_4, height)}
+  end
+
+  def handle_event("change", %{"form" => form_params}, socket) do
+    {:noreply, put_form(socket, form_params)}
+  end
+
+  def put_form(socket, params) do
+    assign(socket, :form, to_form(params, as: :form))
   end
 
   ## JS
