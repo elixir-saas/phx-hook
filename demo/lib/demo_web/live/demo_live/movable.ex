@@ -5,7 +5,13 @@ defmodule DemoWeb.DemoLive.Movable do
     ~H"""
     <Layouts.app flash={@flash}>
       <div class="relative h-64">
-        <div id="movable_0" class="size-64" phx-hook="Movable" data-move-event="moved">
+        <div
+          id="movable_0"
+          class="size-64"
+          phx-hook="Movable"
+          data-move-event="moved"
+          data-z-group="movables"
+        >
           <.card>
             Move me!
             <div :if={@top && @left}>
@@ -16,7 +22,13 @@ defmodule DemoWeb.DemoLive.Movable do
       </div>
 
       <div class="relative h-64">
-        <div id="movable_1" class="size-64" phx-hook="Movable" data-move-handle="[data-handle]">
+        <div
+          id="movable_1"
+          class="size-64"
+          phx-hook="Movable"
+          data-move-handle="[data-handle]"
+          data-z-group="movables"
+        >
           <.card handle>
             Move me with a handle!
           </.card>
@@ -33,6 +45,7 @@ defmodule DemoWeb.DemoLive.Movable do
           data-resize-min-width="200"
           data-resize-min-height="150"
           data-resize-event="resized"
+          data-z-group="movables"
         >
           <.card handle>
             Move & resize me!
@@ -54,6 +67,7 @@ defmodule DemoWeb.DemoLive.Movable do
           data-resize-aspect-offset="32"
           data-resize-min-width="400"
           data-resize-min-height={400 / 16 * 9 + 32}
+          data-z-group="movables"
         >
           <.card handle>
             Move & resize me! (Fixed aspect)
