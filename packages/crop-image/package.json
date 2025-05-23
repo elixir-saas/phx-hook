@@ -1,0 +1,34 @@
+{
+  "name": "@phx-hook/crop-image",
+  "version": "0.1.0",
+  "description": "Crop images to a specified size for upload",
+  "keywords": [
+    "Phoenix",
+    "Elixir",
+    "LiveView",
+    "Image"
+  ],
+  "author": "Justin Tormey <justin@93software.com>",
+  "homepage": "https://github.com/elixir-saas/phx-hook/tree/main/packages/crop-image",
+  "license": "MIT",
+  "main": "src/index.js",
+  "directories": {
+    "src": "src"
+  },
+  "files": [
+    "src"
+  ],
+  "bin": {
+    "vendor": "./vendor.js"
+  },
+  "scripts": {
+    "format": "prettier src --write"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elixir-saas/phx-hook.git"
+  },
+  "bugs": {
+    "url": "https://github.com/elixir-saas/phx-hook/issues"
+  }
+}
