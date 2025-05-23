@@ -22,7 +22,7 @@ defmodule DemoWeb.DemoLive.CropImage do
           <div
             id="crop_example_preview"
             phx-update="ignore"
-            class="size-64 relative bg-base-100 mb-3 rounded-lg"
+            class="size-64 bg-base-100 mb-3 rounded-lg"
           />
           <.form for={@form_example} phx-submit="submit_example" phx-change="validate">
             <.inputs_for_crop form={@form_example} />
@@ -90,11 +90,14 @@ defmodule DemoWeb.DemoLive.CropImage do
               }
               class="hidden absolute -left-4 top-6 -translate-x-[100%] -translate-y-[50%] p-3 bg-base-200 rounded-xl"
             >
-              <div
-                id="crop_profile_preview"
-                phx-update="ignore"
-                class="size-64 relative bg-base-100 mb-3 rounded-lg"
-              />
+              <div class="relative">
+                <div
+                  id="crop_profile_preview"
+                  phx-update="ignore"
+                  class="size-64 bg-base-100 mb-3 rounded-lg"
+                />
+                <.upload_progress upload={@uploads.profile} />
+              </div>
               <.inputs_for_crop form={@form_profile} type="hidden" />
               <.button variant="primary" type="submit" class="w-full">
                 Save profile image
@@ -201,6 +204,27 @@ defmodule DemoWeb.DemoLive.CropImage do
         <.input data-crop-field="height" type={@type} field={f_crop[:height]} readonly label="Height" />
       </div>
     </.inputs_for>
+    """
+  end
+
+  attr :upload, Phoenix.LiveView.UploadConfig, required: true
+
+  def upload_progress(assigns) do
+    assigns =
+      case assigns.upload.entries do
+        [entry | _] -> assign(assigns, :progress, entry.progress)
+        _otherwise -> assign(assigns, :progress, 0)
+      end
+
+    ~H"""
+    <div :if={@progress > 0} class="absolute inset-0 flex items-center justify-center bg-base-300/50">
+      <div
+        class="radial-progress"
+        style={"--value: #{@progress};"}
+        aria-valuenow={@progress}
+        role="progressbar"
+      />
+    </div>
     """
   end
 end
