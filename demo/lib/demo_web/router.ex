@@ -21,6 +21,7 @@ defmodule DemoWeb.Router do
 
     live "/audio", DemoLive.Audio
     live "/copy-to-clipboard", DemoLive.CopyToClipboard
+    live "/crop-image", DemoLive.CropImage
     live "/drag-drop-detector", DemoLive.DragDropDetector
     live "/focus-list", DemoLive.FocusList
     live "/movable", DemoLive.Movable

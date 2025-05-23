@@ -110,6 +110,9 @@
 /* Add variants for the class names used by @phx-hook/drag-drop-detector */
 @custom-variant drag-active (.drag-active&, .drag-active &);
 
+/* Add variants for the class names used by @phx-hook/crop-image */
+@custom-variant cropping (.cropping&, .cropping &);
+
 /* Add variants for the class names used by @phx-hook/movable */
 @custom-variant moving (.moving&, .moving &);
 @custom-variant resizing (.resizing&, .resizing &);

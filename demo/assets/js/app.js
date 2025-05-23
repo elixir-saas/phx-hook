@@ -28,6 +28,7 @@ import Sortable from "../vendor/Sortable"
 // Import & configure hooks
 import AudioHook from "@phx-hook/audio"
 import CopyToClipboardHook from "@phx-hook/copy-to-clipboard"
+import CropImageHook from "@phx-hook/crop-image"
 import DragDropDetectorHook from "@phx-hook/drag-drop-detector"
 import FocusListHook from "@phx-hook/focus-list"
 import MovableHook from "@phx-hook/movable"
@@ -40,6 +41,7 @@ import SortableHook from "@phx-hook/sortable"
 const hooks = {
   Audio: AudioHook(),
   CopyToClipboard: CopyToClipboardHook(),
+  CropImage: CropImageHook(),
   DragDropDetector: DragDropDetectorHook(),
   FocusList: FocusListHook(),
   Movable: MovableHook(),
