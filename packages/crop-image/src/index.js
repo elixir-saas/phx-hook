@@ -88,8 +88,8 @@ export default function (options = {}) {
         this.ctx = this.canvasEl.getContext("2d");
 
         // Calculate pixel ratio between canvas and canvasEl
-        let { width, height } = this.canvasEl.getBoundingClientRect();
-        let pr = this.canvasEl.width / width;
+        let { width: pixelWidth } = this.canvasEl.getBoundingClientRect();
+        let pr = size / pixelWidth;
 
         let yOffset = Math.max(0, image.width - image.height) / 2 / pr;
         let xOffset = Math.max(0, image.height - image.width) / 2 / pr;
