@@ -87,31 +87,34 @@ export default function (options = {}) {
         this.canvasEl.setAttribute("height", size);
         this.ctx = this.canvasEl.getContext("2d");
 
-        // Calculate pixel ratio between canvas and canvasEl
-        let { width: pixelWidth } = this.canvasEl.getBoundingClientRect();
-        let pr = size / pixelWidth;
+        // Avoid reading canvas dimensions before they are calculated
+        requestAnimationFrame(() => {
+          // Calculate pixel ratio between canvas and canvasEl
+          let { width: pixelWidth } = this.canvasEl.getBoundingClientRect();
+          let pr = size / pixelWidth;
 
-        let yOffset = Math.max(0, image.width - image.height) / 2 / pr;
-        let xOffset = Math.max(0, image.height - image.width) / 2 / pr;
+          let yOffset = Math.max(0, image.width - image.height) / 2 / pr;
+          let xOffset = Math.max(0, image.height - image.width) / 2 / pr;
 
-        this.imagePos = {
-          top: yOffset,
-          bottom: yOffset,
-          left: xOffset,
-          right: xOffset,
-          width: image.width / pr,
-          height: image.height / pr,
-        };
+          this.imagePos = {
+            top: yOffset,
+            bottom: yOffset,
+            left: xOffset,
+            right: xOffset,
+            width: image.width / pr,
+            height: image.height / pr,
+          };
 
-        this.pixelRatio = pr;
-        this.image = image;
+          this.pixelRatio = pr;
+          this.image = image;
 
-        this.setInitPos();
-        this.updateInputs();
-        this.draw();
+          this.setInitPos();
+          this.updateInputs();
+          this.draw();
 
-        this.active = true;
-        this.el.classList.add(activeClass);
+          this.active = true;
+          this.el.classList.add(activeClass);
+        });
       });
 
       image.src = src;
