@@ -1,6 +1,6 @@
 {
   "name": "@phx-hook/crop-image",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Crop images to a specified size for upload",
   "keywords": [
     "Phoenix",
