@@ -93,9 +93,9 @@ defmodule DemoWeb.DemoLive.CropImage do
   end
 
   def handle_event("submit_example", %{"example" => %{"crop" => params}}, socket) do
-    path = Path.join(:code.priv_dir(:demo), "static/images/phx-hook.png")
-    file = Path.join("uploads", "phx-hook-#{:os.system_time()}.png")
-    dest = Path.join("priv/static", file)
+    path = priv_path("static/images", "phx-hook.png")
+    file = "phx-hook-#{:os.system_time()}.png"
+    dest = priv_path("static/uploads", file)
 
     resize_as_png(path, dest,
       x: String.to_integer(params["left"]),
@@ -104,7 +104,9 @@ defmodule DemoWeb.DemoLive.CropImage do
       h: String.to_integer(params["height"])
     )
 
-    {:noreply, socket |> assign(:path_example, file) |> put_form(:example)}
+    file_path = Path.join("uploads", file)
+
+    {:noreply, socket |> assign(:path_example, file_path) |> put_form(:example)}
   end
 
   def handle_event("submit_profile", %{"profile" => %{"crop" => params}}, socket) do
@@ -113,8 +115,8 @@ defmodule DemoWeb.DemoLive.CropImage do
     [file] =
       for entry <- entries do
         consume_uploaded_entry(socket, entry, fn %{path: path} ->
-          file = Path.join("uploads", "#{Path.basename(path)}.png")
-          dest = Path.join("priv/static", file)
+          file = "#{Path.basename(path)}.png"
+          dest = priv_path("static/uploads", file)
 
           resize_as_png(path, dest,
             x: String.to_integer(params["left"]),
@@ -128,11 +130,17 @@ defmodule DemoWeb.DemoLive.CropImage do
         end)
       end
 
-    {:noreply, socket |> assign(:path_profile, file) |> put_form(:profile)}
+    file_path = Path.join("uploads", file)
+
+    {:noreply, socket |> assign(:path_profile, file_path) |> put_form(:profile)}
   end
 
   def put_form(socket, as) do
     assign(socket, :"form_#{as}", to_form(%{}, as: as))
+  end
+
+  def priv_path(path, file) do
+    Path.join([:code.priv_dir(:demo), path, file])
   end
 
   def resize_as_png(input, output, opts) do

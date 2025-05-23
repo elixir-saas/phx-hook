@@ -29,7 +29,8 @@ demo-*.tar
 /priv/static/assets/
 
 # Ignore file uploads from LiveView.
-/priv/static/uploads/
+/priv/static/uploads/*
+!/priv/static/uploads/.gitkeep
 
 # Ignore digested assets cache.
 /priv/static/cache_manifest.json
