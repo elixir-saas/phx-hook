@@ -33,7 +33,7 @@ defmodule DemoWeb.DemoLive.CropImage do
         </div>
         <div :if={@path_example}>
           <div class="p-3 bg-base-200 rounded-xl">
-            <img src={@path_example} class="rounded-lg overflow-hidden" />
+            <img src={@path_example} class="max-w-64 max-h-64 rounded-lg overflow-hidden" />
           </div>
         </div>
       </div>
@@ -41,7 +41,7 @@ defmodule DemoWeb.DemoLive.CropImage do
       <.header>
         Crop Image For Upload
         <:subtitle>
-          Click on the profile image icon to upload & crop.
+          Click on the profile image icon to upload & crop. Supports png & jpg.
         </:subtitle>
       </.header>
 
@@ -122,7 +122,7 @@ defmodule DemoWeb.DemoLive.CropImage do
      |> assign(:path_example, nil)
      |> assign(:path_profile, nil)
      |> allow_upload(:profile,
-       accept: ~w(.png .jpg),
+       accept: ~w(.png .jpg .jpeg),
        max_file_size: 10_000_000,
        max_entries: 1
      )}
