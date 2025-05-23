@@ -216,6 +216,11 @@ export default function (options = {}) {
       if (file) {
         let src = URL.createObjectURL(file);
         this.initCanvasForImage(src);
+
+        let onHasFile = this.el.dataset["onHasFile"];
+        if (onHasFile) {
+          liveSocket.execJS(this.el, onHasFile);
+        }
       }
     },
 
