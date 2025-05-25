@@ -32,8 +32,9 @@ defmodule DemoWeb.Router do
     live "/right-click-menu", DemoLive.RightClickMenu
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", DemoWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", DemoWeb do
+    pipe_through :api
+
+    get "/", PageController, :home_json
+  end
 end

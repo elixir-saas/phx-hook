@@ -2,7 +2,15 @@ defmodule DemoWeb.PageController do
   use DemoWeb, :controller
 
   def home(conn, _params) do
-    hooks = [
+    render(conn, :home, hooks: hooks())
+  end
+
+  def home_json(conn, _params) do
+    json(conn, %{hooks: hooks()})
+  end
+
+  def hooks() do
+    [
       %{name: "audio", description: "Play audio following a user interaction."},
       %{name: "copy-to-clipboard", description: "Copy values to the clipboard."},
       %{name: "crop-image", description: "Crop images to a specified size for upload."},
@@ -18,7 +26,5 @@ defmodule DemoWeb.PageController do
       %{name: "right-click-menu", description: "Open custom context menus on right click."},
       %{name: "sortable", description: "Easy drag-and-drop sorting with Sortable.js."}
     ]
-
-    render(conn, :home, hooks: hooks)
   end
 end
