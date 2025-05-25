@@ -5,9 +5,10 @@ defmodule DemoWeb.DemoLive.Sortable do
     ~H"""
     <Layouts.app flash={@flash}>
       <.header>
-        Customers
+        Sortable Table
         <:subtitle>
-          Drag to sort rows. Current order: {Enum.map_join(@customers, ", ", & &1.name)}.
+          Hold and drag to sort rows. Current order: {Enum.map_join(@customers, ", ", & &1.name)}.
+          <.source_link source_url={demo_source_url()} />
         </:subtitle>
       </.header>
 

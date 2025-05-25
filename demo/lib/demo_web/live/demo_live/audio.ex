@@ -9,10 +9,14 @@ defmodule DemoWeb.DemoLive.Audio do
         phx-hook="Audio"
         data-preload={@click_audio}
         data-active-element="dispatcher"
-        class="mb-12"
+        class="mb-12 space-y-4"
       >
         <.header>
           Clicky Buttons
+          <:subtitle>
+            Buttons that make a clicking sound when pressed.
+            <.source_link source_url={demo_source_url()} />
+          </:subtitle>
         </.header>
         <div class="grid gap-3 grid-cols-3">
           <div :for={_ <- 1..9} class="h-16">
@@ -25,9 +29,13 @@ defmodule DemoWeb.DemoLive.Audio do
         </div>
       </div>
 
-      <div id="audio_2" phx-hook="Audio" data-preload={@click_audio} class="mb-12">
+      <div id="audio_2" phx-hook="Audio" data-preload={@click_audio} class="mb-12 space-y-4">
         <.header>
           Clicky Input
+          <:subtitle>
+            An input that makes a clicking sound on each key press.
+            <.source_link source_url={demo_source_url()} />
+          </:subtitle>
         </.header>
         <div class="transition-all duration-50 playing:scale-105">
           <.input
@@ -38,9 +46,13 @@ defmodule DemoWeb.DemoLive.Audio do
         </div>
       </div>
 
-      <div id="audio_3" phx-hook="Audio" data-preload={@rising_tone_audio} class="mb-12">
+      <div id="audio_3" phx-hook="Audio" data-preload={@rising_tone_audio} class="mb-12 space-y-4">
         <.header>
           Play & Pause
+          <:subtitle>
+            Play a sound, show a pause button with CSS while playing.
+            <.source_link source_url={demo_source_url()} />
+          </:subtitle>
         </.header>
         <.button phx-click={play_audio(@rising_tone_audio, id: "rising_tone")}>
           <.icon name="hero-speaker-x-mark" class="size-4 playing:hidden" />

@@ -4,6 +4,14 @@ defmodule DemoWeb.DemoLive.DragDropDetector do
   def render(assigns) do
     ~H"""
     <Layouts.app flash={@flash}>
+      <.header>
+        Detect Drag & Drop
+        <:subtitle>
+          Change the appearance of the page in response to a file drag & drop.
+          <.source_link source_url={demo_source_url()} />
+        </:subtitle>
+      </.header>
+
       <.form for={@form} phx-change="change">
         <.input
           type="checkbox"

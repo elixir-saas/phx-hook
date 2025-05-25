@@ -4,7 +4,15 @@ defmodule DemoWeb.DemoLive.RightClickMenu do
   def render(assigns) do
     ~H"""
     <Layouts.app flash={@flash}>
-      <div class="bg-base-300 p-16 mb-16 flex items-center justify-center">
+      <.header>
+        Right Click Area
+        <:subtitle>
+          Right click within an area to show a custom menu.
+          <.source_link source_url={demo_source_url()} />
+        </:subtitle>
+      </.header>
+
+      <div class="bg-base-300 p-16 mb-12 flex items-center justify-center">
         <span class="text-sm text-base-content">
           Right click me.
         </span>
@@ -18,9 +26,10 @@ defmodule DemoWeb.DemoLive.RightClickMenu do
       </div>
 
       <.header>
-        Customers
+        Right Click In Table
         <:subtitle>
           Right click any row, each has its own context menu.
+          <.source_link source_url={demo_source_url()} />
         </:subtitle>
       </.header>
 

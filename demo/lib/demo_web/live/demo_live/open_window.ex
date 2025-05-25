@@ -4,6 +4,14 @@ defmodule DemoWeb.DemoLive.OpenWindow do
   def render(assigns) do
     ~H"""
     <Layouts.app flash={@flash}>
+      <.header>
+        Open Window
+        <:subtitle>
+          Opens a centered 1080x720 window. Detects when the window is closed.
+          <.source_link source_url={demo_source_url()} />
+        </:subtitle>
+      </.header>
+
       <div>
         Window state: {render_state(@state)}
       </div>

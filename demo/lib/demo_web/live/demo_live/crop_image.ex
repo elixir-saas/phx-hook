@@ -8,6 +8,7 @@ defmodule DemoWeb.DemoLive.CropImage do
         Crop Existing Image
         <:subtitle>
           Start cropping, then submit to see the result.
+          <.source_link source_url={demo_source_url()} />
         </:subtitle>
       </.header>
 
@@ -42,6 +43,7 @@ defmodule DemoWeb.DemoLive.CropImage do
         Crop Image For Upload
         <:subtitle>
           Click on the profile image icon to upload & crop. Supports png & jpg.
+          <.source_link source_url={demo_source_url()} />
         </:subtitle>
       </.header>
 

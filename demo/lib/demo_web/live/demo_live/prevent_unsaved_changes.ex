@@ -4,13 +4,33 @@ defmodule DemoWeb.DemoLive.PreventUnsavedChanges do
   def render(assigns) do
     ~H"""
     <Layouts.app flash={@flash}>
-      <.button variant="primary" phx-click={JS.patch(~p"/prevent-unsaved-changes?view=new")}>
-        Open modal (new user)
-      </.button>
+      <.header>
+        Prevent Unsaved Changes
+        <:subtitle>
+          Warns before exiting the modal or page if changes were made.
+          <.source_link source_url={demo_source_url()} />
+        </:subtitle>
+      </.header>
 
-      <.button variant="primary" phx-click={JS.patch(~p"/prevent-unsaved-changes?view=existing")}>
-        Open modal (existing user)
-      </.button>
+      <div class="mb-12">
+        <.button variant="primary" phx-click={JS.patch(~p"/prevent-unsaved-changes?view=new")}>
+          Open modal (new user)
+        </.button>
+      </div>
+
+      <.header>
+        Prevent Unsaved Changes (Existing Data)
+        <:subtitle>
+          Warns before exiting the modal or page if changes were made, uses existing data.
+          <.source_link source_url={demo_source_url()} />
+        </:subtitle>
+      </.header>
+
+      <div class="mb-12">
+        <.button variant="primary" phx-click={JS.patch(~p"/prevent-unsaved-changes?view=existing")}>
+          Open modal (existing user)
+        </.button>
+      </div>
 
       <.modal
         id="demo_modal"

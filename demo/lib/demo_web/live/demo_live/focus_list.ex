@@ -6,6 +6,10 @@ defmodule DemoWeb.DemoLive.FocusList do
     <Layouts.app flash={@flash}>
       <.header>
         Focus List
+        <:subtitle>
+          Set focus on hover and navigate a list with the arrow keys.
+          <.source_link source_url={demo_source_url()} />
+        </:subtitle>
       </.header>
 
       <div class="mb-12">
@@ -30,6 +34,10 @@ defmodule DemoWeb.DemoLive.FocusList do
 
       <.header>
         Focus List with Search
+        <:subtitle>
+          Add an input as the "home" item for a nice search experience.
+          <.source_link source_url={demo_source_url()} />
+        </:subtitle>
       </.header>
 
       <div
@@ -65,6 +73,10 @@ defmodule DemoWeb.DemoLive.FocusList do
 
       <.header>
         Focus List in Right Click Menu
+        <:subtitle>
+          Navigate right click menu items with the arrow keys.
+          <.source_link source_url={demo_source_url()} />
+        </:subtitle>
       </.header>
 
       <div class="mb-12 bg-base-300 p-16 mb-16 flex items-center justify-center">
@@ -106,6 +118,10 @@ defmodule DemoWeb.DemoLive.FocusList do
 
       <.header>
         Focus List in "Jump Menu"
+        <:subtitle>
+          Trigger items on keypress to create a "jump" interaction.
+          <.source_link source_url={demo_source_url()} />
+        </:subtitle>
       </.header>
 
       <div

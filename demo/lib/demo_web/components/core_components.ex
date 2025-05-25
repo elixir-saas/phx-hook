@@ -515,4 +515,29 @@ defmodule DemoWeb.CoreComponents do
     </div>
     """
   end
+
+  attr :source_url, :string, required: true
+
+  def source_link(assigns) do
+    ~H"""
+    <.link href={@source_url} target="_blank" class="text-primary gap-1 items-center">
+      View source <span aria-hidden="true">&rarr;</span>
+    </.link>
+    """
+  end
+
+  @doc """
+  Returns a GitHub link to the current file and line, for a LiveView in demo_live.
+  """
+  defmacro demo_source_url() do
+    file = __CALLER__.file
+    line = __CALLER__.line
+
+    main = "https://github.com/elixir-saas/phx-hook/blob/main"
+    live = "#{main}/demo/lib/demo_web/live/demo_live"
+
+    source_url = "#{live}/#{Path.basename(file)}#L#{line}"
+
+    quote do: unquote(source_url)
+  end
 end

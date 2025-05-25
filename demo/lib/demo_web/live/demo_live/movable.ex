@@ -4,7 +4,15 @@ defmodule DemoWeb.DemoLive.Movable do
   def render(assigns) do
     ~H"""
     <Layouts.app flash={@flash}>
-      <div class="relative h-64">
+      <.header>
+        Move
+        <:subtitle>
+          Move an element, send an event with the new position on move end.
+          <.source_link source_url={demo_source_url()} />
+        </:subtitle>
+      </.header>
+
+      <div class="relative h-64 mb-12">
         <div
           id="movable_0"
           class="size-64"
@@ -21,7 +29,15 @@ defmodule DemoWeb.DemoLive.Movable do
         </div>
       </div>
 
-      <div class="relative h-64">
+      <.header>
+        Move With Handle
+        <:subtitle>
+          Move an element using a specified handle element.
+          <.source_link source_url={demo_source_url()} />
+        </:subtitle>
+      </.header>
+
+      <div class="relative h-64 mb-12">
         <div
           id="movable_1"
           class="size-64"
@@ -35,7 +51,15 @@ defmodule DemoWeb.DemoLive.Movable do
         </div>
       </div>
 
-      <div class="relative h-64">
+      <.header>
+        Move & Resize
+        <:subtitle>
+          Move an element using a handle element, resize from the corners with a minimum size.
+          <.source_link source_url={demo_source_url()} />
+        </:subtitle>
+      </.header>
+
+      <div class="relative h-64 mb-12">
         <div
           id="movable_2"
           class="size-64"
@@ -56,7 +80,15 @@ defmodule DemoWeb.DemoLive.Movable do
         </div>
       </div>
 
-      <div class="relative h-64">
+      <.header>
+        Move & Resize With Aspect
+        <:subtitle>
+          Constrain element resizing to maintain an aspect ratio (useful for video players).
+          <.source_link source_url={demo_source_url()} />
+        </:subtitle>
+      </.header>
+
+      <div class="relative h-64 mb-12">
         <div
           id="movable_3"
           class="w-[400px] h-[calc(400px/16*9+32px)]"

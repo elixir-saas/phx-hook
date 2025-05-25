@@ -4,6 +4,14 @@ defmodule DemoWeb.DemoLive.Resizable do
   def render(assigns) do
     ~H"""
     <Layouts.app flash={@flash}>
+      <.header>
+        Resizable Sidebar With Snap
+        <:subtitle>
+          A resizable sidebar that snaps closed when resized below a minimum threshold.
+          <.source_link source_url={demo_source_url()} />
+        </:subtitle>
+      </.header>
+
       <.browser_mock>
         <button
           id="reveal_button"
@@ -58,6 +66,13 @@ defmodule DemoWeb.DemoLive.Resizable do
         </div>
       </.browser_mock>
 
+      <.header>
+        Resizable (From Left)
+        <:subtitle>
+          Resize from the left side of an element. <.source_link source_url={demo_source_url()} />
+        </:subtitle>
+      </.header>
+
       <.browser_mock>
         <.resize_bar
           id="resizable_2"
@@ -80,6 +95,13 @@ defmodule DemoWeb.DemoLive.Resizable do
         </.resize_bar>
       </.browser_mock>
 
+      <.header>
+        Resizable (From Bottom)
+        <:subtitle>
+          Resize from the bottom of an element. <.source_link source_url={demo_source_url()} />
+        </:subtitle>
+      </.header>
+
       <.browser_mock>
         <.resize_bar
           id="resizable_3"
@@ -101,6 +123,13 @@ defmodule DemoWeb.DemoLive.Resizable do
           </div>
         </.resize_bar>
       </.browser_mock>
+
+      <.header>
+        Resizable (From Top)
+        <:subtitle>
+          Resize from the top of an element. <.source_link source_url={demo_source_url()} />
+        </:subtitle>
+      </.header>
 
       <.browser_mock>
         <.resize_bar
@@ -212,7 +241,7 @@ defmodule DemoWeb.DemoLive.Resizable do
 
   def browser_mock(assigns) do
     ~H"""
-    <div class="mockup-browser border-base-300 border w-full">
+    <div class="mockup-browser border-base-300 border w-full mb-12">
       <div class="mockup-browser-toolbar">
         <div class="input">https://example.com</div>
       </div>
