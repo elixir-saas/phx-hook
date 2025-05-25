@@ -37,11 +37,8 @@ export default function (options = {}) {
       this.canvasEl.addEventListener("mousemove", this.handleMouseMove);
       this.canvasEl.addEventListener("mousedown", this.handleMouseDown);
 
-      // Initialize canvas from image src if configured
-      let imageSrc = this.el.dataset["cropImageSrc"];
-      if (imageSrc) {
-        this.initCanvasForImage(imageSrc);
-      }
+      // Attempt to load image from data-crop-image-src attribute
+      this.initImageSrc();
 
       // Listen for files to show in canvas if configured
       let fileInputId = this.el.dataset["cropFileInputId"];
@@ -59,6 +56,8 @@ export default function (options = {}) {
     },
 
     updated() {
+      this.initImageSrc();
+
       if (this.active) {
         this.el.classList.add(activeClass);
         this.updateInputs();
@@ -76,6 +75,15 @@ export default function (options = {}) {
 
       this.containerEl.appendChild(canvasEl);
       this.canvasEl = canvasEl;
+    },
+
+    initImageSrc() {
+      // Initialize canvas from image src if configured
+      let imageSrc = this.el.dataset["cropImageSrc"];
+      if (imageSrc && imageSrc !== this.imageSrc) {
+        this.imageSrc = imageSrc;
+        this.initCanvasForImage(imageSrc);
+      }
     },
 
     initCanvasForImage(src) {
@@ -188,18 +196,6 @@ export default function (options = {}) {
         px(this.imagePos.height),
       );
 
-      // Draw dashed border around crop area
-      this.ctx.strokeStyle = "white";
-      this.ctx.lineWidth = px(1);
-      this.ctx.setLineDash([px(2), px(2)]);
-
-      this.ctx.strokeRect(
-        px(this.pos.left),
-        px(this.pos.top),
-        px(this.pos.width),
-        px(this.pos.height),
-      );
-
       // Draw light image inside crop area
       this.ctx.drawImage(
         this.image,
@@ -211,6 +207,18 @@ export default function (options = {}) {
         px(this.pos.top),
         px(this.pos.width),
         px(this.pos.height),
+      );
+
+      // Draw dashed border around crop area
+      this.ctx.strokeStyle = "white";
+      this.ctx.lineWidth = px(1);
+      this.ctx.setLineDash([px(2), px(2)]);
+
+      this.ctx.strokeRect(
+        px(this.pos.left + 1),
+        px(this.pos.top + 1),
+        px(this.pos.width - 2),
+        px(this.pos.height - 2),
       );
     },
 

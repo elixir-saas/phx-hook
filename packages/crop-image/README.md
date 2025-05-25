@@ -1,7 +1,5 @@
 # @phx-hook/crop-image
 
-🚧 Experimental 🚧
-
 Crop images to a specified size for upload.
 
 [See it in action (Demo).](https://phx-hook.elixir-saas.com/crop-image)
@@ -112,8 +110,6 @@ end
 * `data-crop-file-input-id`: ID of a file input element, an image added to the input will be added to the crop canvas.
 * `data-crop-image-src`: Source URL or path of the image to crop.
 * `data-on-has-file`: A JS command that will be executed when the file input specified by `data-crop-file-input-id` selects a file.
-
-You should only specify one of `data-crop-file-input-id` and `data-crop-image-src`.
 
 ## Child Attributes
 
