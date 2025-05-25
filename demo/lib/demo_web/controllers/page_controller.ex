@@ -5,6 +5,7 @@ defmodule DemoWeb.PageController do
     hooks = [
       %{name: "audio", description: "Play audio following a user interaction."},
       %{name: "copy-to-clipboard", description: "Copy values to the clipboard."},
+      %{name: "crop-image", description: "Crop images to a specified size for upload."},
       %{name: "drag-drop-detector", description: "Add classes for drag and drop events."},
       %{name: "focus-list", description: "Focus items in a list with keyboard shortcuts."},
       %{name: "movable", description: "Allow users to move and resize elements freely."},
