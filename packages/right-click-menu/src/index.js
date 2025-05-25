@@ -56,15 +56,17 @@ export default function () {
           position: "absolute",
         });
 
-        const rect = this.el.getBoundingClientRect();
+        let clientY = event.clientY;
+        let clientX = event.clientX;
+        let rect = this.el.getBoundingClientRect();
 
         // Position to top of cursor if would otherwise render outside window
         let top = event.pageY;
-        if (top + rect.height > window.innerHeight) top -= rect.height;
+        if (clientY + rect.height > window.innerHeight) top -= rect.height;
 
         // Position to left of cursor if would otherwise render outside window
         let left = event.pageX;
-        if (left + rect.width > window.innerWidth) left -= rect.width;
+        if (clientX + rect.width > window.innerWidth) left -= rect.width;
 
         Object.assign(this.el.style, {
           top: `${top}px`,
