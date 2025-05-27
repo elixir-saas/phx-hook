@@ -23,6 +23,7 @@ See interactive examples in the [demo application](https://phx-hook.elixir-saas.
 * [`@phx-hook/resizable`](./packages/resizable) - Resize the width or height of elements.
 * [`@phx-hook/right-click-menu`](./packages/right-click-menu) - Open custom context menus on right click.
 * [`@phx-hook/sortable`](./packages/sortable) - Easy drag-and-drop sorting with [Sortable.js](https://sortablejs.github.io/Sortable/).
+* [`@phx-hook/textarea`](./packages/textarea) - Adapt the height of a textarea to its contents.
 
 ## Installation
 
