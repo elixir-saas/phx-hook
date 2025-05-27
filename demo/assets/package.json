@@ -11,6 +11,6 @@
     "@phx-hook/resizable": "^0.1.4",
     "@phx-hook/right-click-menu": "^0.1.4",
     "@phx-hook/sortable": "^0.1.1",
-    "@phx-hook/textarea": "^0.1.1"
+    "@phx-hook/textarea": "^0.1.2"
   }
 }
