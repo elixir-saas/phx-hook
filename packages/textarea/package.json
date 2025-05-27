@@ -1,6 +1,6 @@
 {
   "name": "@phx-hook/textarea",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Adapt the height of a textarea to its contents",
   "keywords": [
     "Phoenix",
