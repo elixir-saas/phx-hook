@@ -24,7 +24,8 @@ defmodule DemoWeb.PageController do
       },
       %{name: "resizable", description: "Resize the width or height of elements."},
       %{name: "right-click-menu", description: "Open custom context menus on right click."},
-      %{name: "sortable", description: "Easy drag-and-drop sorting with Sortable.js."}
+      %{name: "sortable", description: "Easy drag-and-drop sorting with Sortable.js."},
+      %{name: "textarea", description: "Adapt the height of a textarea to its contents."}
     ]
   end
 end

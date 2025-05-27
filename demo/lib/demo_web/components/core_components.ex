@@ -230,7 +230,7 @@ defmodule DemoWeb.CoreComponents do
           id={@id}
           name={@name}
           class={[
-            @class || "w-full textarea",
+            @class || "w-full textarea resize-none",
             @errors != [] && (@error_class || "textarea-error")
           ]}
           {@rest}

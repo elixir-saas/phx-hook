@@ -37,6 +37,7 @@ import PreventUnsavedChangesHook from "@phx-hook/prevent-unsaved-changes"
 import ResizableHook from "@phx-hook/resizable"
 import RightClickMenuHook from "@phx-hook/right-click-menu"
 import SortableHook from "@phx-hook/sortable"
+import TextareaHook from "@phx-hook/textarea"
 
 const hooks = {
   Audio: AudioHook(),
@@ -50,6 +51,7 @@ const hooks = {
   Resizable: ResizableHook(),
   RightClickMenu: RightClickMenuHook(),
   Sortable: SortableHook(Sortable),
+  Textarea: TextareaHook(),
 }
 
 const csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
