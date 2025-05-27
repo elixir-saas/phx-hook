@@ -37,6 +37,10 @@ let liveSocket = new LiveSocket("/live", Socket, { hooks, ... });
 * `data-max-height`: An integer value in pixels used to constrain the height of the textarea. Overrides `defaultMaxHeight`.
 * `data-submit-on-enter`: If present, the form containing the textarea will be submitted when the `"Enter"` key is pressed.
 
+## TailwindCSS
+
+By default, textareas are resizable. To disable resizing using Tailwind, add a `resize-none` class to your textarea element.
+
 ## HEEx Component
 
 Phoenix projects come with a `input/1` component already included. You can apply this hook to all of your textareas by adding it this function component, where the function head matches on `%{type: "textarea"} = assigns`. Consider also adding `resize="none"` to disable manual resizing.

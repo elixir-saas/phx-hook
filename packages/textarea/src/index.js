@@ -3,7 +3,7 @@ export default function (options = {}) {
 
   return {
     mounted() {
-      this.style = { resize: "none" };
+      this.style = {};
 
       if (!(this.el instanceof HTMLTextAreaElement)) {
         throw new Error(
@@ -20,8 +20,6 @@ export default function (options = {}) {
       // Store initial height of element as the lower bound for resizing
       let rect = this.el.getBoundingClientRect();
       this.initHeight = rect.height;
-
-      Object.assign(this.el.style, this.style);
     },
 
     updated() {
