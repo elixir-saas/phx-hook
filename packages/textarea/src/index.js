@@ -3,8 +3,6 @@ export default function (options = {}) {
 
   return {
     mounted() {
-      this.style = {};
-
       if (!(this.el instanceof HTMLTextAreaElement)) {
         throw new Error(
           `@phx-hook/textarea may only be used with a <textarea> element`,
@@ -23,8 +21,8 @@ export default function (options = {}) {
     },
 
     updated() {
-      // Re-apply saved styles
-      Object.assign(this.el.style, this.style);
+      // Recalculate height whenever element is updated
+      this.handleInput();
     },
 
     handleInput() {
@@ -39,12 +37,7 @@ export default function (options = {}) {
       height = Math.min(height, maxHeight);
       height = Math.max(height, this.initHeight);
 
-      let updates = {
-        height: `${height}px`,
-      };
-
-      Object.assign(this.style, updates);
-      Object.assign(this.el.style, this.style);
+      this.el.style.height = `${height}px`;
     },
 
     handleKeyDown(event) {
