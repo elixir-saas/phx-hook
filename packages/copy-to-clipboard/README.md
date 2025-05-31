@@ -66,6 +66,7 @@ A copy is triggered by a `"phx:copy"` event, by default. When dispatched by a `<
 
 * `data-copy-contents`: Use in place of `data-copy-value` to copy the contents of a DOM element. Leave blank to copy the contents of the hook element, or set to a query selector to copy the contents of a child of the hook element. Works with both `"plain"` and `"html"` as the copy format.
 * `data-copy-format`: The optional format to use for the copy, may be either `"plain"` or `"html"`. Defaults to `"plain"`.
+* `data-copy-reset-after`: An integer value in milliseconds to wait before the `data-copied` attribute is removed, following a successful copy.
 * `data-copy-value`: A value to copy. May be either plain text or an HTML string, for when the copy format is set to `"html"`. This attribute takes precedence over `data-copy-contents`.
 
 ## TailwindCSS
@@ -124,6 +125,7 @@ A button that copies to the users clipboard.
 """
 attr :id, :string, required: true
 attr :copy_value, :string, required: true, doc: "Value to copy to the clipboard"
+attr :reset_after, :integer, default: nil, doc: "Time in ms to reset the copy button"
 attr :rest, :global, include: ~w(class variant)
 
 slot :inner_block, required: true
@@ -134,6 +136,7 @@ def copy_button(assigns) do
     id={@id}
     phx-hook="CopyToClipboard"
     data-copy-format="plain"
+    data-copy-reset-after={@reset_after}
     data-copy-value={@copy_value}
     phx-click={JS.dispatch("phx:copy")}
     {@rest}

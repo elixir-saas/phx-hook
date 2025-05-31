@@ -43,9 +43,20 @@ export default function (options = {}) {
       // If available, use the dispatcher element to communicate copy state
       let copierEl = event.detail.dispatcher || this.el;
 
+      let copySuccess = () => {
+        copierEl.dataset["copied"] = "copied";
+
+        let resetAfter = parseInt(this.el.dataset["copyResetAfter"]);
+        if (!isNaN(resetAfter)) {
+          setTimeout(() => {
+            delete copierEl.dataset["copied"];
+          }, resetAfter);
+        }
+      };
+
       if (format === "plain" && dataPlain) {
         navigator.clipboard.writeText(dataPlain).then(() => {
-          copierEl.dataset["copied"] = "copied";
+          copySuccess();
         });
       } else if (format === "html" && dataPlain && dataHTML) {
         let clipboardItem = new ClipboardItem({
@@ -54,7 +65,7 @@ export default function (options = {}) {
         });
 
         navigator.clipboard.write([clipboardItem]).then(() => {
-          copierEl.dataset["copied"] = "copied";
+          copySuccess();
         });
       }
     },
