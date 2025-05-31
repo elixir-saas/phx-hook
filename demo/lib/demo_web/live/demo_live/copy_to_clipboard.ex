@@ -18,6 +18,7 @@ defmodule DemoWeb.DemoLive.CopyToClipboard do
             id="copy_1"
             phx-hook="CopyToClipboard"
             data-copy-format="plain"
+            data-copy-reset-after={1000}
             data-copy-value="This text was copied!"
           >
             Copy plain value
@@ -29,6 +30,7 @@ defmodule DemoWeb.DemoLive.CopyToClipboard do
             id="copy_2"
             phx-hook="CopyToClipboard"
             data-copy-format="html"
+            data-copy-reset-after={1000}
             data-copy-value={@html_value}
           >
             Copy HTML value
