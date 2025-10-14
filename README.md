@@ -49,7 +49,7 @@ Additional installation instructions and documentation for each package can be f
 
 ## Modification
 
-These hooks are designed to be concise, to be easy to understand, and to have zero npm package dependencies. If a hook doesn't quite work for you and requires modificaiton, I encourage you to copy it into your own project and develop it from there.
+These hooks are designed to be concise, to be easy to understand, and to have zero npm package dependencies. If a hook doesn't quite work for you and requires modification, I encourage you to copy it into your own project and develop it from there.
 
 Vendoring a hook is easy, just copy the source file from this repo. For example, you might copy from `packages/sortable/src/index.js` to `assets/js/hooks/sortable.js` in your Phoenix project. Then, change the import path to your local path in your `app.js` file:
 
