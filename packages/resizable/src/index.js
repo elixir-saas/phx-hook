@@ -29,8 +29,8 @@ export default function (options = {}) {
   };
 
   function clamp(value, min, max) {
-    if (value && !isNaN(min) && value < min) value = min;
-    if (value && !isNaN(max) && value > max) value = max;
+    if (value != null && !isNaN(min) && value < min) value = min;
+    if (value != null && !isNaN(max) && value > max) value = max;
     return value;
   }
 
