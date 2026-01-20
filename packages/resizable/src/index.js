@@ -28,6 +28,12 @@ export default function (options = {}) {
     top: "ns-resize",
   };
 
+  function clamp(value, min, max) {
+    if (value && !isNaN(min) && value < min) value = min;
+    if (value && !isNaN(max) && value > max) value = max;
+    return value;
+  }
+
   return {
     mounted() {
       this.style = {};
@@ -111,13 +117,15 @@ export default function (options = {}) {
 
     pushPosition(eventName) {
       let rect = this.resizeTarget.getBoundingClientRect();
+      let min = parseInt(this.el.dataset["resizeMin"]);
+      let max = parseInt(this.el.dataset["resizeMax"]);
 
       if (this.resizeFrom === "right" || this.resizeFrom === "left") {
-        this.pushEvent(eventName, { width: rect.width });
+        this.pushEvent(eventName, { width: clamp(rect.width, min, max) });
       }
 
       if (this.resizeFrom === "bottom" || this.resizeFrom === "top") {
-        this.pushEvent(eventName, { height: rect.height });
+        this.pushEvent(eventName, { height: clamp(rect.height, min, max) });
       }
     },
 
@@ -169,18 +177,16 @@ export default function (options = {}) {
       if (this.resizeFrom === "bottom") h = this.initHeight - deltaY;
       if (this.resizeFrom === "top") h = this.initHeight + deltaY;
 
-      // Apply min/max width and height constraints
-      let min = parseInt(this.el.dataset["resizeMin"]);
-      let max = parseInt(this.el.dataset["resizeMax"]);
-
       // Store unclamped values for snap threshold check
       let rawW = w;
       let rawH = h;
 
-      if (w && !isNaN(min) && w < min) w = min;
-      if (h && !isNaN(min) && h < min) h = min;
-      if (w && !isNaN(max) && w > max) w = max;
-      if (h && !isNaN(max) && h > max) h = max;
+      // Apply min/max width and height constraints
+      let min = parseInt(this.el.dataset["resizeMin"]);
+      let max = parseInt(this.el.dataset["resizeMax"]);
+
+      w = clamp(w, min, max);
+      h = clamp(h, min, max);
 
       // Apply snap behavior with a trigger and threshold
       let onSnap = this.el.dataset["onSnap"];
