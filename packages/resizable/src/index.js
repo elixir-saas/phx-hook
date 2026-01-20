@@ -173,6 +173,10 @@ export default function (options = {}) {
       let min = parseInt(this.el.dataset["resizeMin"]);
       let max = parseInt(this.el.dataset["resizeMax"]);
 
+      // Store unclamped values for snap threshold check
+      let rawW = w;
+      let rawH = h;
+
       if (w && !isNaN(min) && w < min) w = min;
       if (h && !isNaN(min) && h < min) h = min;
       if (w && !isNaN(max) && w > max) w = max;
@@ -188,10 +192,8 @@ export default function (options = {}) {
           : 1;
 
         let snap = false;
-        if (this.resizeFrom === "right") snap = deltaX > snapThreshold;
-        if (this.resizeFrom === "left") snap = -deltaX > snapThreshold;
-        if (this.resizeFrom === "bottom") snap = deltaY > snapThreshold;
-        if (this.resizeFrom === "top") snap = -deltaY > snapThreshold;
+        if (rawW && !isNaN(min)) snap = min - rawW > snapThreshold;
+        if (rawH && !isNaN(min)) snap = min - rawH > snapThreshold;
 
         let snapTrigger = this.el.dataset["snapTrigger"] || "mouseup";
 
