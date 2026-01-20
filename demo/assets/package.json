@@ -8,7 +8,7 @@
     "@phx-hook/movable": "^0.1.3",
     "@phx-hook/open-window": "^0.2.0",
     "@phx-hook/prevent-unsaved-changes": "^0.1.0",
-    "@phx-hook/resizable": "^0.1.5",
+    "@phx-hook/resizable": "^0.1.6",
     "@phx-hook/right-click-menu": "^0.1.4",
     "@phx-hook/sortable": "^0.1.1",
     "@phx-hook/textarea": "^0.1.2"
