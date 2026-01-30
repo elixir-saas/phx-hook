@@ -51,6 +51,10 @@ export default function (options = {}) {
 
           // Submit form, allowing LiveView to handle the submission
           event.target.form.requestSubmit();
+
+          // Execute custom JS command if specified
+          let onSubmit = this.el.dataset["onSubmit"];
+          if (onSubmit) liveSocket.execJS(this.el, onSubmit);
         }
       }
     },

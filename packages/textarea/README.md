@@ -23,6 +23,7 @@ let liveSocket = new LiveSocket("/live", Socket, { hooks, ... });
     field={@form[:text]}
     phx-hook="Textarea"
     data-max-height="250"
+    data-on-submit={JS.dispatch("scroll-to-bottom")}
     data-submit-on-enter
   />
 </.form>
@@ -35,6 +36,7 @@ let liveSocket = new LiveSocket("/live", Socket, { hooks, ... });
 ## Attributes
 
 * `data-max-height`: An integer value in pixels used to constrain the height of the textarea. Overrides `defaultMaxHeight`.
+* `data-on-submit`: A `Phoenix.LiveView.JS` command to execute when Enter triggers form submission. Useful for performing additional actions like scrolling or hiding elements after submit.
 * `data-submit-on-enter`: If present, the form containing the textarea will be submitted when the `"Enter"` key is pressed.
 
 ## TailwindCSS
