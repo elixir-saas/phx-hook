@@ -39,12 +39,12 @@ let liveSocket = new LiveSocket("/live", Socket, { hooks, ... });
 Fields supported in the event `:detail` map for the `phx:play` event:
 
 * `:audio`: The path or URL where the audio file to play is located (required).
-* `:id`: An identifer to give the audio object, in case it should be reused across interactions.
+* `:id`: An identifier to give the audio object, in case it should be reused across interactions.
 * `:restart`: When `true`, starts the audio from the beginning with each play.
 
 Fields supported in the event `:detail` map for the `phx:pause` event:
 
-* `:id`: The identifer of the audio object that should be paused (required).
+* `:id`: The identifier of the audio object that should be paused (required).
 
 ## Options
 

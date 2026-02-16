@@ -37,7 +37,7 @@ This hook does not have to be used with a `<form>` element, however it is the mo
 
 ## Options
 
-* `cancelEvent`: The event to listen for when a cancelation attempt is made. Defaults to `"phx:cancel"`.
+* `cancelEvent`: The event to listen for when a cancellation attempt is made. Defaults to `"phx:cancel"`.
 
 ## Attributes
 
