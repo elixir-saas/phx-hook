@@ -74,7 +74,7 @@ defmodule DemoWeb.DemoLive.CopyToClipboard do
       <.header>
         Copy From Contents (Container)
         <:subtitle>
-          Copy plain & html content from the DOM, targeting a conainer inside the hook element.
+          Copy plain & html content from the DOM, targeting a container inside the hook element.
           <.source_link source_url={demo_source_url()} />
         </:subtitle>
       </.header>

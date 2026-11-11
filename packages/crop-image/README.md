@@ -100,7 +100,7 @@ end
 ## Options
 
 * `activeClass`: Class to be added when an image is loaded and ready to crop. Defaults to `"cropping"`.
-* `minSize`: Mimimum width and height in pixels of the crop area. Defaults to `50`.
+* `minSize`: Minimum width and height in pixels of the crop area. Defaults to `50`.
 * `threshold`: Hitbox size in pixels of the crop area resize handles. Defaults to `10`.
 
 ## Attributes

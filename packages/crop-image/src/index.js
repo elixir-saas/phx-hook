@@ -22,7 +22,7 @@ export default function (options = {}) {
 
       if (!this.containerEl) {
         throw new Error(
-          `@phx-hook/crop-image: Cound not find element #${containerId}`,
+          `@phx-hook/crop-image: Could not find element #${containerId}`,
         );
       }
 
